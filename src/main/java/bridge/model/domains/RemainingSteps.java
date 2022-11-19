@@ -1,14 +1,20 @@
 package bridge.model.domains;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
-public class Bridge {
+public class RemainingSteps {
 
-    private final List<String> bridge;
+    private final Queue<String> steps = new LinkedList<>();
 
-    public Bridge(List<String> bridge) {
+    public RemainingSteps(List<String> bridge) {
         validate(bridge);
-        this.bridge = bridge;
+        initializeSteps(bridge);
+    }
+
+    private void initializeSteps(List<String> bridge) {
+        this.steps.addAll(bridge);
     }
 
     private void validate(List<String> bridge) {
@@ -22,7 +28,6 @@ public class Bridge {
         if (hasOddStep(bridge)) {
             throw new IllegalArgumentException();
         }
-
     }
 
     private boolean hasOddSize(List<String> bridge) {
