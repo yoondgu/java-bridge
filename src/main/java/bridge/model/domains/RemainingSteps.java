@@ -1,5 +1,8 @@
 package bridge.model.domains;
 
+import bridge.model.domains.constants.BridgeSize;
+import bridge.model.domains.constants.Step;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -31,9 +34,8 @@ public class RemainingSteps {
     }
 
     private boolean hasOddSize(List<String> bridge) {
-        // TODO 최솟값 최댓값 상수 처리
         int size = bridge.size();
-        return size < 3 || size > 20;
+        return size < BridgeSize.MINIMUM.getValue() || size > BridgeSize.MAXIMUM.getValue();
     }
 
     private boolean hasOddStep(List<String> bridge) {

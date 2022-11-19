@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.domains.Step;
+import bridge.model.domains.constants.BridgeSize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +24,20 @@ public class BridgeMaker {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
         while (bridge.size() < size) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-            String step = determineMovableStep(bridgeNumber);
-            validateStep(step);
-            bridge.add(step);
+            addStepKeywordToBridge(bridge);
         }
         return bridge;
     }
 
+    private void addStepKeywordToBridge(List<String> bridge) {
+        int bridgeNumber = bridgeNumberGenerator.generate();
+        String step = ExpressionConverter.STEP.convert(bridgeNumber);
+        validateStep(step);
+        bridge.add(step);
+    }
+
     private void validateSize(int size) {
-        // TODO 다리길이 조건 상수화 위치 검토
-        if (size < 3 || size > 20) {
+        if (size < BridgeSize.MINIMUM.getValue() || size > BridgeSize.MAXIMUM.getValue()) {
             // TODO 클래스 분리 검토, 예외 메시지 작성
             throw new IllegalArgumentException();
         }
@@ -45,16 +48,5 @@ public class BridgeMaker {
             // TODO 예외 발생 위치, 예외 종류 및 메시지 검토
             throw new IllegalArgumentException();
         }
-    }
-
-    // TODO enum 클래스에서 자체 계산 검토
-    private String determineMovableStep(int bridgeNumber) {
-        if (Step.UP.getValue() == bridgeNumber) {
-            return Step.UP.getKeyword();
-        }
-        if (Step.DOWN.getValue() == bridgeNumber) {
-            return Step.DOWN.getKeyword();
-        }
-        return null;
     }
 }
