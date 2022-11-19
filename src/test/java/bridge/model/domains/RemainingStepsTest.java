@@ -1,9 +1,11 @@
 package bridge.model.domains;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -36,4 +38,26 @@ class RemainingStepsTest {
         arguments.add(newArrayList("U", "A", "D"));
         return arguments.stream();
     }
+
+    @DisplayName("현재 선택한 칸의 성공 여부를 확인한 뒤 해당 칸 정보를 삭제")
+    @Test
+    void checkAllStepsForBridge() {
+        RemainingSteps remainingSteps = new RemainingSteps(newArrayList("U", "D", "U"));
+        assertThat(remainingSteps.isMovableStep("U")).isTrue();
+        assertThat(remainingSteps.isMovableStep("D")).isTrue();
+        assertThat(remainingSteps.isMovableStep("D")).isFalse();
+    }
+
+    @DisplayName("더 이상 확인할 다리의 칸이 없는 경우 예외 발생")
+    @Test
+    void checkIsMovableStepWithEmptyStack() {
+        RemainingSteps remainingSteps = new RemainingSteps(newArrayList("U", "D", "U"));
+        // TODO 추후 다른 기능에 필요한 초기화 메소드 구현 후 리팩토링
+        remainingSteps.isMovableStep("U");
+        remainingSteps.isMovableStep("D");
+        remainingSteps.isMovableStep("U");
+        assertThatThrownBy(() -> remainingSteps.isMovableStep("U"))
+                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+    }
+
 }

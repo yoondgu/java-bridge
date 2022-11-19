@@ -54,4 +54,13 @@ public class RemainingSteps {
         }
         return !step.equals(Step.DOWN.getKeyword());
     }
+
+    public boolean isMovableStep(String step) {
+        String movableStep = steps.poll();
+        // TODO 예외 처리 위치 및 유형 검토, 메시지 작성
+        if (movableStep == null) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        return movableStep.equals(step);
+    }
 }
