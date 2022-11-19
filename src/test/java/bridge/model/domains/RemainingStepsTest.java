@@ -15,7 +15,14 @@ import java.util.stream.Stream;
 
 class RemainingStepsTest {
 
-    @DisplayName("잘못된 인자값으로 다리 생성 시 예외 발생(null, 범위 밖 길이, 잘못된 칸 정보)")
+    @DisplayName("잘못된 인자값으로 다리 생성 시 예외 발생(null)")
+    @Test
+    void createBridgeWithIllegalArgument() {
+        assertThatThrownBy(() -> new RemainingSteps(null))
+                .isInstanceOf(NullPointerException.class);
+    }
+
+    @DisplayName("잘못된 인자값으로 다리 생성 시 예외 발생(범위 밖 길이, 잘못된 칸 정보)")
     @ParameterizedTest
     @MethodSource("generateIllegalArgumentSteam")
     void createBridgeWithIllegalArgument(List<String> bridge) {
@@ -25,7 +32,6 @@ class RemainingStepsTest {
 
     private static Stream<List<String>> generateIllegalArgumentSteam() {
         List<List<String>> arguments = new LinkedList<>();
-        arguments.add(null);
         arguments.add(newArrayList());
         arguments.add(newArrayList("U", "U"));
         arguments.add(newArrayList(
@@ -57,7 +63,7 @@ class RemainingStepsTest {
         remainingSteps.isMovableStep("D");
         remainingSteps.isMovableStep("U");
         assertThatThrownBy(() -> remainingSteps.isMovableStep("U"))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 
 }

@@ -26,9 +26,8 @@ public class RemainingSteps {
     }
 
     private void validateStatus(String polledValue) {
-        // TODO 메시지 작성
         if (polledValue == null) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IllegalStateException("기능 오류: 더 이상 건너야 할 칸 정보가 없습니다.");
         }
     }
 

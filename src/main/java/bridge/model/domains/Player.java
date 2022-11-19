@@ -16,26 +16,25 @@ public class Player {
     }
 
     public void addOneStep(String step) {
-        validatePlayerStatus();
+        validateStatus();
         movingHistory.add(step);
         hasSurvived = remainingSteps.isMovableStep(step);
     }
 
-    public boolean hasSucceed() {
-        return hasSurvived && remainingSteps.isEmpty();
+    public boolean hasDoneMoving() {
+        return remainingSteps.isEmpty();
     }
 
     public boolean hasSurvived() {
         return hasSurvived;
     }
 
-    private void validatePlayerStatus() {
-        // TODO 에러메시지 상수화
+    private void validateStatus() {
         if (remainingSteps.isEmpty()) {
-            throw new IllegalStateException("이미 다리를 모두 건넜습니다.");
+            throw new IllegalStateException("기능 오류: 사용자가 이미 다리를 모두 건넜습니다.");
         }
         if (!hasSurvived) {
-            throw new IllegalStateException("이미 다리 건너기를 실패했습니다.");
+            throw new IllegalStateException("기능 오류: 이미 다리 건너기를 실패했습니다.");
         }
     }
 }

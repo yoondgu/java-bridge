@@ -9,7 +9,7 @@ public class BridgeValidator {
 
     public static void validateBridge(List<String> bridge) {
         if (bridge == null) {
-            throw new IllegalArgumentException();
+            throw new NullPointerException("기능 오류: 다리 정보는 null일 수 없습니다.");
         }
         validateBridgeSize(bridge.size());
         validateBridgeSteps(bridge);
@@ -17,7 +17,7 @@ public class BridgeValidator {
 
     public static void validateBridgeSize(int size) {
         if (isOddBridgeSize(size)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("기능 오류: 다리의 길이는 3 이상 20 이하 범위의 정수여야 합니다.");
         }
     }
 
@@ -33,7 +33,7 @@ public class BridgeValidator {
 
     public static void validateStep(String step) {
         if (isOddStep(step)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("기능 오류: 다리의 칸 정보는 U 또는 D으로 표현해야 합니다.");
         }
     }
 
