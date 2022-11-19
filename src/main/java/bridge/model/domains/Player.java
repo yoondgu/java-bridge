@@ -21,6 +21,10 @@ public class Player {
         hasSurvived = remainingSteps.isMovableStep(step);
     }
 
+    public boolean hasSucceed() {
+        return hasSurvived && remainingSteps.isEmpty();
+    }
+
     public boolean hasSurvived() {
         return hasSurvived;
     }
