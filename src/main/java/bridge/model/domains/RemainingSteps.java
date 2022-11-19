@@ -63,4 +63,8 @@ public class RemainingSteps {
         }
         return movableStep.equals(step);
     }
+
+    public boolean isEmpty() {
+        return steps.isEmpty();
+    }
 }
