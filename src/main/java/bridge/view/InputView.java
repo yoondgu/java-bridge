@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.domains.constants.BridgeSize;
+import bridge.view.constants.CommandKeyword;
 import bridge.view.constants.MovingKeyword;
 import bridge.view.utils.ConsoleReader;
 
@@ -8,8 +9,6 @@ import bridge.view.utils.ConsoleReader;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
-
 
     /**
      * 다리의 길이를 입력받는다.
@@ -33,7 +32,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public boolean readGameCommand() {
+        return ConsoleReader.readLineAsKeyword(CommandKeyword.values());
     }
 }
