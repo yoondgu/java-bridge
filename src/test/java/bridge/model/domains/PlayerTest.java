@@ -14,9 +14,9 @@ class PlayerTest {
     void addOneStep() {
         Player player = new Player(newArrayList("U", "D", "U"));
         player.addOneMoving("U");
-        assertThat(player.hasSurvived()).isTrue();
+        assertThat(player.isFailed()).isTrue();
         player.addOneMoving("U");
-        assertThat(player.hasSurvived()).isFalse();
+        assertThat(player.isFailed()).isFalse();
     }
 
     @DisplayName("사용자가 이미 다리를 모두 건넜을 경우 예외 발생")

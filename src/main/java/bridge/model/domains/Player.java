@@ -8,7 +8,7 @@ public class Player {
     private final RemainingSteps remainingSteps; // TODO 외부 클래스로 바꾸고 Player에서는 현재 위치 int만 관리?
     private final List<String> movingHistory;
 
-    private boolean hasSurvived = true;
+    private boolean isFailed = false;
 
     public Player(List<String> bridge) {
         this.remainingSteps = new RemainingSteps(bridge);
@@ -18,22 +18,26 @@ public class Player {
     public void addOneMoving(String moving) {
         validateStatus();
         movingHistory.add(moving);
-        hasSurvived = remainingSteps.isMovableStep(moving);
+        isFailed = !remainingSteps.isMovableStep(moving);
+    }
+
+    public List<String> getMovingHistory() {
+        return movingHistory;
     }
 
     public boolean hasAllMovingDone() {
         return remainingSteps.isEmpty();
     }
 
-    public boolean hasSurvived() {
-        return hasSurvived;
+    public boolean isFailed() {
+        return isFailed;
     }
 
     private void validateStatus() {
         if (remainingSteps.isEmpty()) {
             throw new IllegalStateException("기능 오류: 사용자가 이미 다리를 모두 건넜습니다.");
         }
-        if (!hasSurvived) {
+        if (isFailed) {
             throw new IllegalStateException("기능 오류: 이미 다리 건너기를 실패했습니다.");
         }
     }

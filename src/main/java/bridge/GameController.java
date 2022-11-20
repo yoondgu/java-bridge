@@ -20,11 +20,11 @@ public class GameController {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String moving = askMoving();
             Player player = bridgeGame.move(moving);
-            // TODO 결과 출력하기
+            outputView.printMap(player.getMovingHistory(), player.isFailed());
             if (player.hasAllMovingDone()) {
                 keepMoving = false;
             }
-            if (!player.hasSurvived()) {
+            if (player.isFailed()) {
                 // TODO 재시도/종료 여부에 따라 bridgeGame.retry() / stopMoving = true;
                 // TODO 재시도/종료 여부 입력받기
                 String retryOrQuit = "R";
@@ -36,7 +36,6 @@ public class GameController {
                 }
             }
         }
-
         // TODO 최종 결과 출력하기
     }
 
