@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player {
 
-    private final RemainingSteps remainingSteps;
+    private final RemainingSteps remainingSteps; // TODO 외부 클래스로 바꾸고 Player에서는 현재 위치 int만 관리?
     private final List<String> movingHistory;
 
     private boolean hasSurvived = true;
@@ -15,13 +15,13 @@ public class Player {
         this.movingHistory = new ArrayList<>();
     }
 
-    public void addOneStep(String step) {
+    public void addOneMoving(String moving) {
         validateStatus();
-        movingHistory.add(step);
-        hasSurvived = remainingSteps.isMovableStep(step);
+        movingHistory.add(moving);
+        hasSurvived = remainingSteps.isMovableStep(moving);
     }
 
-    public boolean hasDoneMoving() {
+    public boolean hasAllMovingDone() {
         return remainingSteps.isEmpty();
     }
 

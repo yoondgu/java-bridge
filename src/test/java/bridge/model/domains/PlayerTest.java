@@ -13,9 +13,9 @@ class PlayerTest {
     @Test
     void addOneStep() {
         Player player = new Player(newArrayList("U", "D", "U"));
-        player.addOneStep("U");
+        player.addOneMoving("U");
         assertThat(player.hasSurvived()).isTrue();
-        player.addOneStep("U");
+        player.addOneMoving("U");
         assertThat(player.hasSurvived()).isFalse();
     }
 
@@ -23,9 +23,9 @@ class PlayerTest {
     @Test
     void addOneStepForFailedPlayer() {
         Player player = new Player(newArrayList("U", "D", "U"));
-        player.addOneStep("U");
-        player.addOneStep("U");
-        assertThatThrownBy(() -> player.addOneStep("U"))
+        player.addOneMoving("U");
+        player.addOneMoving("U");
+        assertThatThrownBy(() -> player.addOneMoving("U"))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -33,10 +33,10 @@ class PlayerTest {
     @Test
     void addOneStepForDonePlayer() {
         Player player = new Player(newArrayList("U", "D", "U"));
-        player.addOneStep("U");
-        player.addOneStep("D");
-        player.addOneStep("U");
-        assertThatThrownBy(() -> player.addOneStep("U"))
+        player.addOneMoving("U");
+        player.addOneMoving("D");
+        player.addOneMoving("U");
+        assertThatThrownBy(() -> player.addOneMoving("U"))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

@@ -19,10 +19,10 @@ public class RemainingSteps {
         this.steps.addAll(bridge);
     }
 
-    public boolean isMovableStep(String step) {
+    public boolean isMovableStep(String moving) {
         String movableStep = steps.poll();
         validateStatus(movableStep);
-        return movableStep.equals(step);
+        return movableStep.equals(moving);
     }
 
     private void validateStatus(String polledValue) {

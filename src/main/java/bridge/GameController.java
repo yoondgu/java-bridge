@@ -19,9 +19,9 @@ public class GameController {
         while (keepMoving) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String moving = askMoving();
-            Player player = bridgeGame.move("U");
+            Player player = bridgeGame.move(moving);
             // TODO 결과 출력하기
-            if (player.hasDoneMoving()) {
+            if (player.hasAllMovingDone()) {
                 keepMoving = false;
             }
             if (!player.hasSurvived()) {
