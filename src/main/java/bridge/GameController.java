@@ -12,11 +12,12 @@ public class GameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private BridgeGame bridgeGame;
 
     public void run() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println("다리의 길이를 입력해주세요.\n");
         int bridgeSize = askBridgeSize();
-        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        bridgeGame = new BridgeGame(bridgeSize);
         MovingMap movingMap = null;
 
         while (!bridgeGame.hasAllMovingDone()) {
@@ -37,9 +38,9 @@ public class GameController {
                 bridgeGame.retry();
             }
         }
-        // TODO 최종 결과 출력하기
         System.out.println("최종 게임 결과");
         outputView.printMap(movingMap);
+        outputView.printResult(bridgeGame.hasPlayerFailed(), bridgeGame.getTrialCount());
     }
 
     private int askBridgeSize() {
