@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.view.constants.OutputFormat;
+import bridge.view.constants.OutputMessage;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -22,8 +25,8 @@ public class OutputView {
      */
     public void printResult(boolean hasFailed, int trialCount) {
         validateTrialCount(trialCount);
-        System.out.printf("게임 성공 여부: %s\n", getResultWord(hasFailed));
-        System.out.printf("총 시도한 횟수: %d\n", trialCount);
+        System.out.printf(OutputFormat.RESULT_HAS_SUCCEED.getValue(), getResultWord(hasFailed));
+        System.out.printf(OutputFormat.RESULT_TRIAL_COUNT.getValue(), trialCount);
     }
 
     // TODO 변환 로직 구현 위치 검토
@@ -38,6 +41,22 @@ public class OutputView {
     private void validateTrialCount(int trialCount) {
         if (trialCount < 1) {
             throw new IllegalArgumentException("기능 오류: 시도 횟수가 잘못되었습니다.");
+        }
+    }
+
+    public void printMessage(OutputMessage message) {
+        validateMessage(message);
+        System.out.println(message.getValue());
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        validateMessage(errorMessage);
+        System.out.printf(OutputFormat.ERROR_MESSAGE.getValue(), errorMessage);
+    }
+
+    private void validateMessage(Object message) {
+        if (message == null) {
+            throw new NullPointerException("기능 오류: 출력 메세지의 값이 null입니다.");
         }
     }
 }

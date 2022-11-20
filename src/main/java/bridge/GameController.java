@@ -4,6 +4,7 @@ import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.MovingMap;
 import bridge.view.OutputView;
+import bridge.view.constants.OutputMessage;
 import bridge.view.utils.MovingMapGenerator;
 
 public class GameController {
@@ -14,14 +15,18 @@ public class GameController {
     private MovingMap movingMap = null;
 
     public void run() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        initializeBridgeGame();
-        playRoundsUntilFailOrDone();
-        showResult();
+        try {
+            outputView.printMessage(OutputMessage.START_GAME);
+            initializeBridgeGame();
+            playRoundsUntilFailOrDone();
+            showResult();
+        } catch (Exception exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+        }
     }
 
     private void initializeBridgeGame() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        outputView.printMessage(OutputMessage.ASK_BRIDGE_SIZE);
         int bridgeSize = askBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
     }
@@ -39,7 +44,7 @@ public class GameController {
     }
 
     private void retryOrQuit() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        outputView.printMessage(OutputMessage.ASK_RETRY_OR_QUIT);
         if (askToRetry()) {
             bridgeGame.retry();
             playRoundsUntilFailOrDone();
@@ -47,7 +52,7 @@ public class GameController {
     }
 
     private boolean playOneRound() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        outputView.printMessage(OutputMessage.ASK_MOVING);
         bridgeGame.move(askMoving());
         boolean hasFailed = bridgeGame.hasPlayerFailed();
         // TODO generator 없이 MovingMap 객체 생성 검토
@@ -58,7 +63,7 @@ public class GameController {
     }
 
     private void showResult() {
-        System.out.println("최종 게임 결과");
+        outputView.printMessage(OutputMessage.SHOW_RESULT);
         outputView.printMap(movingMap);
         outputView.printResult(bridgeGame.hasPlayerFailed(), bridgeGame.getTrialCount());
     }
@@ -68,7 +73,7 @@ public class GameController {
         try {
             return inputView.readBridgeSize();
         } catch (IllegalArgumentException exception) {
-            System.out.println("[ERROR] " + exception.getMessage());
+            outputView.printErrorMessage(exception.getMessage());
             return askBridgeSize();
         }
     }
@@ -77,7 +82,7 @@ public class GameController {
         try {
             return inputView.readMoving();
         } catch (IllegalArgumentException exception) {
-            System.out.println("[ERROR] " + exception.getMessage());
+            outputView.printErrorMessage(exception.getMessage());
             return askMoving();
         }
     }
@@ -86,7 +91,7 @@ public class GameController {
         try {
             return inputView.readGameCommand();
         } catch (IllegalArgumentException exception) {
-            System.out.println("[ERROR] " + exception.getMessage());
+            outputView.printErrorMessage(exception.getMessage());
             return askToRetry();
         }
     }
