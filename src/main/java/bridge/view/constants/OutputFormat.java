@@ -2,8 +2,8 @@ package bridge.view.constants;
 
 public enum OutputFormat {
 
-    RESULT_HAS_SUCCEED("게임 성공 여부: %s\n"),
-    RESULT_TRIAL_COUNT("총 시도한 횟수: %d\n"),
+    RESULT_HAS_SUCCEED("게임 성공 여부: %s"),
+    RESULT_TRIAL_COUNT("총 시도한 횟수: %d"),
 
     ERROR_MESSAGE("[ERROR] %s");
 

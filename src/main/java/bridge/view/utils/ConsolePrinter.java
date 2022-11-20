@@ -14,7 +14,7 @@ public class ConsolePrinter {
     public static void printFormattedLine(OutputFormat format, Object content) {
         validateContent(content);
         validateFormat(format);
-        System.out.printf(format.getValue(), content);
+        System.out.printf(format.getValue() + "\n", content);
     }
 
     private static void validateContent(Object content) {

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player {
 
-    private final RemainingSteps remainingSteps; // TODO 외부 클래스로 바꾸고 Player에서는 현재 위치 int만 관리?
+    private final RemainingSteps remainingSteps;
     private final List<String> movingHistory;
 
     private boolean isFailed = false;

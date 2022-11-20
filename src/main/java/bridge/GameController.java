@@ -12,7 +12,7 @@ public class GameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
-    private MovingMap movingMap = null;
+    private MovingMap movingMap;
 
     public void run() {
         try {
@@ -21,7 +21,8 @@ public class GameController {
             playRoundsUntilFailOrDone();
             showResult();
         } catch (Exception exception) {
-            System.out.println("[ERROR] " + exception.getMessage());
+            exception.printStackTrace();
+            outputView.printErrorMessage(exception.getMessage());
         }
     }
 
@@ -43,14 +44,6 @@ public class GameController {
         playRoundsUntilFailOrDone();
     }
 
-    private void retryOrQuit() {
-        outputView.printMessage(OutputMessage.ASK_RETRY_OR_QUIT);
-        if (askToRetry()) {
-            bridgeGame.retry();
-            playRoundsUntilFailOrDone();
-        }
-    }
-
     private boolean playOneRound() {
         outputView.printMessage(OutputMessage.ASK_MOVING);
         bridgeGame.move(askMoving());
@@ -60,6 +53,14 @@ public class GameController {
         movingMap = new MovingMap(generator);
         outputView.printMap(movingMap);
         return hasFailed;
+    }
+
+    private void retryOrQuit() {
+        outputView.printMessage(OutputMessage.ASK_RETRY_OR_QUIT);
+        if (askToRetry()) {
+            bridgeGame.retry();
+            playRoundsUntilFailOrDone();
+        }
     }
 
     private void showResult() {

@@ -1,8 +1,8 @@
 package bridge.view.constants;
 
 public enum MovingKeyword {
-    UP("U", "U"), DOWN("D", "D"),
-    ;
+
+    UP("U", "U"), DOWN("D", "D");
 
     private final String key;
     private final String value;
