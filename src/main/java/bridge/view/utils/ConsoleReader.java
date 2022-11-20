@@ -1,8 +1,19 @@
 package bridge.view.utils;
 
+import bridge.view.constants.MovingKeyword;
 import camp.nextstep.edu.missionutils.Console;
 
 public class ConsoleReader {
+
+    public static String readLineAsKeyword(MovingKeyword[] keyword) {
+        String line = readLine();
+        for (MovingKeyword key : keyword) {
+            if (key.getKey().equals(line)) {
+                return key.getValue();
+            }
+        }
+        throw new IllegalArgumentException("입력 오류: 해당 입력값은 지정된 키워드만 허용됩니다.");
+    }
 
     public static int readLineAsInteger() {
         String line = readLine();

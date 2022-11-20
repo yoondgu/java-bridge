@@ -23,10 +23,10 @@ public enum ExpressionConverter {
     private static String convertBridgeNumberToStep(Object determinant) {
         int bridgeNumber = Integer.parseInt(determinant.toString());
         if (bridgeNumber == 1) {
-            return Step.UP.getKeyword();
+            return Step.UP.getValue();
         }
         if (bridgeNumber == 0) {
-            return Step.DOWN.getKeyword();
+            return Step.DOWN.getValue();
         }
         return null;
     }

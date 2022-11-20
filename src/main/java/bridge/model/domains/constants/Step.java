@@ -5,13 +5,13 @@ public enum Step {
     UP("U"),
     DOWN("D");
 
-    private final String keyword;
+    private final String value;
 
-    Step(String keyword) {
-        this.keyword = keyword;
+    Step(String value) {
+        this.value = value;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public String getValue() {
+        return value;
     }
 }

@@ -15,14 +15,14 @@ public class GameController {
         int bridgeSize = askBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
-        boolean stopMoving = false;
-        while (stopMoving) {
-            // TODO 칸 입력받기
-            // TODO 잘못된 값이면 다시 입력받기
+        boolean keepMoving = true;
+        while (keepMoving) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String moving = askMoving();
             Player player = bridgeGame.move("U");
             // TODO 결과 출력하기
             if (player.hasDoneMoving()) {
-                stopMoving = true;
+                keepMoving = false;
             }
             if (!player.hasSurvived()) {
                 // TODO 재시도/종료 여부에 따라 bridgeGame.retry() / stopMoving = true;
@@ -32,7 +32,7 @@ public class GameController {
                     bridgeGame.retry();
                 }
                 if ("Q".equals(retryOrQuit)) {
-                    stopMoving = true;
+                    keepMoving = false;
                 }
             }
         }
@@ -46,6 +46,15 @@ public class GameController {
         } catch (IllegalArgumentException exception) {
             System.out.println("[ERROR] " + exception.getMessage());
             return askBridgeSize();
+        }
+    }
+
+    private String askMoving() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+            return askMoving();
         }
     }
 }
