@@ -2,13 +2,18 @@ package bridge;
 
 import bridge.model.BridgeGame;
 import bridge.model.domains.Player;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class GameController {
 
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
     public void run() {
-        // TODO 다리 길이 입력받기
-        // TODO 잘못된 값이면 다시 입력받기
-        BridgeGame bridgeGame = new BridgeGame(3);
+        System.out.println("다리의 길이를 입력해주세요.");
+        int bridgeSize = askBridgeSize();
+        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
         boolean stopMoving = false;
         while (stopMoving) {
@@ -33,5 +38,14 @@ public class GameController {
         }
 
         // TODO 최종 결과 출력하기
+    }
+
+    private int askBridgeSize() {
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+            return askBridgeSize();
+        }
     }
 }
