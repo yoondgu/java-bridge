@@ -13,8 +13,19 @@ public class MovingMapGenerator {
     private final boolean isFailed;
 
     public MovingMapGenerator(List<String> movingHistory, boolean isFailed) {
+        validateMovingHistory(movingHistory);
         this.movingHistory = movingHistory;
         this.isFailed = isFailed;
+    }
+
+
+    private void validateMovingHistory(List<String> movingHistory) {
+        if (movingHistory == null) {
+            throw new NullPointerException("기능 오류 : 이동 결과가 null입니다.");
+        }
+        if (movingHistory.isEmpty()) {
+            throw new IllegalArgumentException("기능 오류 : 이동 결과에 저장된 정보가 없습니다.");
+        }
     }
 
     public List<String> generateMap() {

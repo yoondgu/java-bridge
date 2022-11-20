@@ -1,9 +1,12 @@
 package bridge;
 
 import bridge.model.BridgeGame;
-import bridge.model.domains.Player;
 import bridge.view.InputView;
+import bridge.view.MovingMap;
 import bridge.view.OutputView;
+import bridge.view.utils.MovingMapGenerator;
+
+import java.util.List;
 
 public class GameController {
 
@@ -14,29 +17,29 @@ public class GameController {
         System.out.println("다리의 길이를 입력해주세요.");
         int bridgeSize = askBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        MovingMap movingMap = null;
 
-        boolean keepMoving = true;
-        while (keepMoving) {
+        while (!bridgeGame.hasAllMovingDone()) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String moving = askMoving();
-            Player player = bridgeGame.move(moving);
-            outputView.printMap(player.getMovingHistory(), player.isFailed());
-            if (player.hasAllMovingDone()) {
-                keepMoving = false;
-            }
-            if (player.isFailed()) {
+            bridgeGame.move(moving);
+            boolean hasFailed = bridgeGame.hasPlayerFailed();
+            List<String> movingHistory = bridgeGame.getPlayerMovingHistory();
+            movingMap = new MovingMap(new MovingMapGenerator(movingHistory, hasFailed));
+            outputView.printMap(movingMap);
+            if (hasFailed) {
                 // TODO 재시도/종료 여부에 따라 bridgeGame.retry() / stopMoving = true;
                 // TODO 재시도/종료 여부 입력받기
-                String retryOrQuit = "R";
-                if ("R".equals(retryOrQuit)) {
-                    bridgeGame.retry();
+                boolean toQuit = false;
+                if (toQuit) {
+                    break;
                 }
-                if ("Q".equals(retryOrQuit)) {
-                    keepMoving = false;
-                }
+                bridgeGame.retry();
             }
         }
         // TODO 최종 결과 출력하기
+        System.out.println("최종 게임 결과");
+        outputView.printMap(movingMap);
     }
 
     private int askBridgeSize() {
