@@ -4,6 +4,8 @@ import bridge.view.constants.OutputFormat;
 
 public class ConsolePrinter {
 
+    private ConsolePrinter() { }
+
     public static void printLine(Object content) {
         validateContent(content);
         System.out.println(content);

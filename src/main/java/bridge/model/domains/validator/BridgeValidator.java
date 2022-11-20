@@ -7,6 +7,8 @@ import java.util.List;
 
 public class BridgeValidator {
 
+    private BridgeValidator() { }
+
     public static void validateBridge(List<String> bridge) {
         if (bridge == null) {
             throw new NullPointerException("기능 오류: 다리 정보는 null일 수 없습니다.");
@@ -17,7 +19,7 @@ public class BridgeValidator {
 
     public static void validateBridgeSize(int size) {
         if (isOddBridgeSize(size)) {
-            throw new IllegalArgumentException("기능 오류: 다리의 길이는 3 이상 20 이하 범위의 정수여야 합니다.");
+            throw new IllegalArgumentException("기능 오류: 다리의 길이는 3 이상 20 이하만 허용됩니다.");
         }
     }
 
@@ -45,9 +47,9 @@ public class BridgeValidator {
     }
 
     private static boolean notEqualsWithAnyKeyword(String step) {
-        if (step.equals(Step.UP.getKeyword())) {
+        if (step.equals(Step.UP.getValue())) {
             return false;
         }
-        return !step.equals(Step.DOWN.getKeyword());
+        return !step.equals(Step.DOWN.getValue());
     }
 }

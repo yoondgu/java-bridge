@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class ConsoleReader {
 
+    private ConsoleReader() { }
+
     public static boolean readLineAsKeyword(CommandKeyword[] keywords) {
         String line = readLine();
         for (CommandKeyword keyword : keywords) {
