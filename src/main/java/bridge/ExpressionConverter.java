@@ -1,14 +1,12 @@
 package bridge;
 
 import bridge.model.domains.constants.Step;
-import bridge.view.constants.Result;
 
 import java.util.function.Function;
 
 public enum ExpressionConverter {
 
-    STEP(ExpressionConverter::convertBridgeNumberToStep),
-    RESULT(ExpressionConverter::convertBooleanToResult);
+    STEP(ExpressionConverter::convertBridgeNumberToStep);
 
     private final Function<Object, String> function;
 
@@ -29,13 +27,5 @@ public enum ExpressionConverter {
             return Step.DOWN.getValue();
         }
         return null;
-    }
-
-    private static String convertBooleanToResult(Object determinant) {
-        boolean hasSucceed = (boolean) determinant;
-        if (hasSucceed) {
-            return Result.SUCCESS.getKeyword();
-        }
-        return Result.FAIL.getKeyword();
     }
 }
