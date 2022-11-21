@@ -16,6 +16,7 @@ public class BridgeGame {
     private int trialCount;
 
     public BridgeGame(int bridgeSize) {
+        // TODO BridgeMaker 직접 생성하는 대신 주입받기
         this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
         this.player = new Player(bridge);
         this.trialCount = 1;

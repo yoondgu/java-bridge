@@ -2,8 +2,7 @@ package bridge.model.domains.constants;
 
 public enum Step {
 
-    UP("U"),
-    DOWN("D");
+    UP("U"), DOWN("D");
 
     private final String value;
 
