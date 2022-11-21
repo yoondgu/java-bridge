@@ -24,7 +24,7 @@ public class GameController {
             showResult();
         } catch (Exception exception) {
             // TODO 기능 오류 메시지는 모두 여기서 출력한다면 여기에 "기능 오류:" 쓰기
-            outputView.printErrorMessage(exception.toString());
+            outputView.printErrorMessage(exception.getMessage());
         }
     }
 
@@ -79,7 +79,7 @@ public class GameController {
         } catch (IllegalArgumentException exception) {
             // TODO 입력 오류 메시지는 모두 여기서 출력한다면 "입력 오류:" 여기에 쓰기
             outputView.printErrorMessage(exception.getMessage());
-            return readInput.call();
+            return askUntilGetLegalAnswer(readInput);
         }
     }
 }
