@@ -138,7 +138,8 @@
 - [ ] 클래스, 메소드 주석 작성
 
 ### 클래스 분리 및 설계 관련
-- [ ] `BridgeGame`에서 직접 `BridgeMaker`를 생성하지 않고, 생성자로 전달받도록 하기
+- [x] `BridgeGame`에서 직접 `BridgeMaker`를 생성하지 않고, 생성자로 전달받도록 하기 (다리 생성 책임 분리)
+- [x] `Player`에서 직접 `RemainingSteps`를 생성하지 않고, 생성자로 전달받도록 하기 (다리 검증 책임 분리)
 - [ ] 딱 한 번 쓰이는 `ExpressionConverter` 클래스 삭제하고 `BridgeMaker`에서 해당 기능 수행하기
 - [ ] `Player`를 이용해서 `MovingMap`을 만들지 말고 `Player`가 현재 상태인 `MovingMap`을 직접 표현하게 하기(직접 map 객체 생성해서 반환)
     - 방법 1. 현재의 MovingMap 생성 로직을 `Player` 내부에서 처리하여 `BridgeGame`에서 이를 반환하는 메소드 수행

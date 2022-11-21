@@ -10,8 +10,8 @@ public class Player {
 
     private boolean isFailed = false;
 
-    public Player(List<String> bridge) {
-        this.remainingSteps = new RemainingSteps(bridge);
+    public Player(RemainingSteps steps) {
+        this.remainingSteps = steps;
         this.movingHistory = new ArrayList<>();
     }
 

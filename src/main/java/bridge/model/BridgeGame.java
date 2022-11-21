@@ -1,8 +1,8 @@
 package bridge.model;
 
 import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.model.domains.Player;
+import bridge.model.domains.RemainingSteps;
 
 import java.util.List;
 
@@ -15,10 +15,9 @@ public class BridgeGame {
     private Player player;
     private int trialCount;
 
-    public BridgeGame(int bridgeSize) {
-        // TODO BridgeMaker 직접 생성하는 대신 주입받기
-        this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
-        this.player = new Player(bridge);
+    public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) {
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        this.player = new Player(new RemainingSteps(bridge));
         this.trialCount = 1;
     }
 
@@ -41,7 +40,7 @@ public class BridgeGame {
     }
 
     private void refreshGameStatus() {
-        player = new Player(bridge);
+        player = new Player(new RemainingSteps(bridge));
         this.trialCount++;
     }
 

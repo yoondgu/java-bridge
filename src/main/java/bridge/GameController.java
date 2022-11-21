@@ -19,7 +19,7 @@ public class GameController {
     public void run() {
         try {
             outputView.printMessage(OutputMessage.START_GAME);
-            initializeBridgeGame();
+            initializeBridgeGame(new BridgeRandomNumberGenerator());
             playRoundsUntilFailOrDone();
             showResult();
         } catch (Exception exception) {
@@ -28,10 +28,10 @@ public class GameController {
         }
     }
 
-    private void initializeBridgeGame() throws Exception {
+    private void initializeBridgeGame(BridgeNumberGenerator generator) throws Exception {
         outputView.printMessage(OutputMessage.ASK_BRIDGE_SIZE);
         int bridgeSize = askUntilGetLegalAnswer(inputView::readBridgeSize);
-        bridgeGame = new BridgeGame(bridgeSize);
+        bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(generator));
     }
 
     private void playRoundsUntilFailOrDone() throws Exception {
