@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/doyoung/projects/woowa-precourse/java-bridge/src/main/java/bridge</OriginalElement>
+  <nodes>
+    <node x="285.9367662203913" y="202.0">bridge.view.utils.MovingMapGenerator</node>
+    <node x="143.7378990731204" y="1151.859114315139">bridge.view.constants.OutputFormat</node>
+    <node x="811.0" y="511.0">bridge.model.BridgeGame</node>
+    <node x="613.4878990731205" y="998.3155509783728">bridge.view.constants.MovingKeyword</node>
+    <node x="-183.9367662203913" y="47.44191555097828">bridge.view.constants.MovingMapFormat</node>
+    <node x="829.0" y="-14.0">bridge.model.domains.RemainingSteps</node>
+    <node x="888.1989701338825" y="998.3155509783728">bridge.view.constants.CommandKeyword</node>
+    <node x="108.5" y="356.0">bridge.view.MovingMap</node>
+    <node x="1236.5" y="870.5">bridge.BridgeNumberGenerator</node>
+    <node x="1171.7861997940267" y="158.6337796086508">bridge.model.domains.constants.BridgeSize</node>
+    <node x="806.0" y="848.0">bridge.BridgeRandomNumberGenerator</node>
+    <node x="-90.0" y="610.5">bridge.Application</node>
+    <node x="1426.6017507723996" y="158.6337796086508">bridge.model.domains.constants.Step</node>
+    <node x="234.77682801235846" y="998.3155509783728">bridge.view.utils.ConsoleReader</node>
+    <node x="1191.5" y="975.8155509783728">bridge.ExpressionConverter</node>
+    <node x="-141.0" y="806.5">bridge.view.OutputView</node>
+    <node x="186.0" y="500.0">bridge.GameController</node>
+    <node x="534.5" y="808.5">bridge.view.InputView</node>
+    <node x="1197.5" y="357.9052523171987">bridge.model.domains.validator.BridgeValidator</node>
+    <node x="-142.5" y="998.3155509783728">bridge.view.utils.ConsolePrinter</node>
+    <node x="1178.0" y="588.0">bridge.BridgeMaker</node>
+    <node x="-184.9367662203913" y="246.0">bridge.view.constants.MovingMapDisplay</node>
+    <node x="829.5" y="213.0">bridge.model.domains.Player</node>
+    <node x="-142.5" y="1151.859114315139">bridge.view.constants.OutputMessage</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="bridge.model.BridgeGame" target="bridge.BridgeMaker" relationship="CREATE">
+      <point x="142.0" y="0.0" />
+      <point x="-175.0" y="0.0" />
+    </edge>
+    <edge source="bridge.model.domains.Player" target="bridge.model.domains.RemainingSteps" relationship="CREATE">
+      <point x="15.0" y="-104.0" />
+      <point x="15.0" y="71.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.InputView" relationship="CREATE">
+      <point x="30.0" y="137.0" />
+      <point x="363.0" y="857.0" />
+      <point x="-118.5" y="0.0" />
+    </edge>
+    <edge source="bridge.model.BridgeGame" target="bridge.BridgeRandomNumberGenerator" relationship="CREATE">
+      <point x="0.0" y="126.0" />
+      <point x="0.0" y="-49.0" />
+    </edge>
+    <edge source="bridge.model.BridgeGame" target="bridge.model.domains.Player" relationship="TO_ONE">
+      <point x="0.0" y="-126.0" />
+      <point x="0.0" y="104.0" />
+    </edge>
+    <edge source="bridge.model.domains.Player" target="bridge.model.domains.RemainingSteps" relationship="TO_ONE">
+      <point x="0.0" y="-104.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.utils.MovingMapGenerator" relationship="CREATE">
+      <point x="0.0" y="-137.0" />
+      <point x="333.0" y="466.0" />
+      <point x="509.9367662203913" y="466.0" />
+      <point x="0.0" y="115.0" />
+    </edge>
+    <edge source="bridge.model.BridgeGame" target="bridge.model.domains.Player" relationship="CREATE">
+      <point x="15.0" y="-126.0" />
+      <point x="15.0" y="104.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.InputView" relationship="TO_ONE">
+      <point x="147.0" y="30.0" />
+      <point x="653.0" y="667.0" />
+      <point x="0.0" y="-48.5" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.OutputView" relationship="TO_ONE">
+      <point x="0.0" y="137.0" />
+      <point x="333.0" y="877.0" />
+      <point x="134.0" y="0.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.model.BridgeGame" relationship="CREATE">
+      <point x="147.0" y="15.0" />
+      <point x="-142.0" y="15.0" />
+    </edge>
+    <edge source="bridge.Application" target="bridge.GameController" relationship="CREATE">
+      <point x="83.0" y="0.0" />
+      <point x="-147.0" y="0.0" />
+    </edge>
+    <edge source="bridge.BridgeRandomNumberGenerator" target="bridge.BridgeNumberGenerator" relationship="REALIZATION">
+      <point x="147.0" y="0.0" />
+      <point x="-116.5" y="0.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.MovingMap" relationship="CREATE">
+      <point x="-147.0" y="-59.0" />
+      <point x="201.0" y="578.0" />
+      <point x="15.0" y="38.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.MovingMap" relationship="TO_ONE">
+      <point x="-147.0" y="-44.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+    <edge source="bridge.BridgeMaker" target="bridge.BridgeNumberGenerator" relationship="TO_ONE">
+      <point x="0.0" y="49.0" />
+      <point x="0.0" y="-26.5" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.model.BridgeGame" relationship="TO_ONE">
+      <point x="147.0" y="0.0" />
+      <point x="-142.0" y="0.0" />
+    </edge>
+    <edge source="bridge.GameController" target="bridge.view.OutputView" relationship="CREATE">
+      <point x="15.0" y="137.0" />
+      <point x="348.0" y="892.0" />
+      <point x="134.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal Groups" zoom="0.5742164399763453" showDependencies="true" x="954.9773429454171" y="922.7595262615862" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
