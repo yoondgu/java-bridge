@@ -141,7 +141,8 @@
 - [x] `BridgeGame`에서 직접 `BridgeMaker`를 생성하지 않고, 생성자로 전달받도록 하기 (다리 생성 책임 분리)
 - [x] `Player`에서 직접 `RemainingSteps`를 생성하지 않고, 생성자로 전달받도록 하기 (다리 검증 책임 분리)
 - [x] 딱 한 번 쓰이는 `ExpressionConverter` 클래스 삭제하고 `BridgeMaker`에서 해당 기능 수행하기
-- [ ] 사용자의 이동 현황, 상태를 전달받은 `OutputView`가 `MovingMap` 생성하여 출력하게 하기 (표현 책임을 view 계층으로 분리)
+- [x] 사용자의 이동 현황, 상태를 전달받은 `OutputView`가 `MovingMap` 생성하여 출력하게 하기 (표현 책임을 view 계층으로 분리)
+- [ ] `MovingMap` 생성 로직 단순화, 중복 작업(이미 변환한 적 있는 이동 현황) 없애기
 - [ ] 프로젝트에서 전역적으로 쓰이지 않는 `ConsolePrinter`, `ConsoleReader`의 메소드를 인스턴스 메소드로 변경, `View` 객체에서 사용하게 만들기
 - [ ] 입력/출력 값 검증 로직 Validator 클래스로 분리하기
 - [ ] 입력 값에 대하여 도메인 로직 조건 검증 시 도메인 클래스 참조하는 문제 해결하기

@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.template;
 
 import bridge.view.utils.MovingMapGenerator;
 

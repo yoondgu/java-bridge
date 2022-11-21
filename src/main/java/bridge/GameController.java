@@ -2,10 +2,8 @@ package bridge;
 
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
-import bridge.view.MovingMap;
 import bridge.view.OutputView;
 import bridge.view.constants.OutputMessage;
-import bridge.view.utils.MovingMapGenerator;
 
 import java.util.concurrent.Callable;
 
@@ -14,7 +12,6 @@ public class GameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
-    private MovingMap movingMap;
 
     public void run() {
         try {
@@ -35,8 +32,8 @@ public class GameController {
     }
 
     private void playRoundsUntilFailOrDone() throws Exception {
-        boolean hasFailed = playOneRound();
-        if (hasFailed) {
+        playOneRound();
+        if (bridgeGame.hasPlayerFailed()) {
             retryOrQuit();
             return;
         }
@@ -46,16 +43,11 @@ public class GameController {
         playRoundsUntilFailOrDone();
     }
 
-    private boolean playOneRound() throws Exception {
+    private void playOneRound() throws Exception {
         outputView.printMessage(OutputMessage.ASK_MOVING);
         String moving = askUntilGetLegalAnswer(inputView::readMoving);
         bridgeGame.move(moving);
-        boolean hasFailed = bridgeGame.hasPlayerFailed();
-        // TODO generator 없이 MovingMap 객체 생성 검토
-        MovingMapGenerator generator = new MovingMapGenerator(bridgeGame.getPlayerMovingHistory(), hasFailed);
-        movingMap = new MovingMap(generator);
-        outputView.printMap(movingMap);
-        return hasFailed;
+        outputView.printMap(bridgeGame.hasPlayerFailed(), bridgeGame.getPlayerMovingHistory());
     }
 
     private void retryOrQuit() throws Exception {
@@ -69,8 +61,9 @@ public class GameController {
 
     private void showResult() {
         outputView.printMessage(OutputMessage.SHOW_RESULT);
-        outputView.printMap(movingMap);
-        outputView.printResult(bridgeGame.hasPlayerFailed(), bridgeGame.getTrialCount());
+        boolean hasFailed = bridgeGame.hasPlayerFailed();
+        outputView.printMap(hasFailed, bridgeGame.getPlayerMovingHistory());
+        outputView.printResult(hasFailed, bridgeGame.getTrialCount());
     }
 
     private <T> T askUntilGetLegalAnswer(Callable<T> readInput) throws Exception {
