@@ -1,6 +1,6 @@
 package bridge.view.constants;
 
-public enum CommandKeyword {
+public enum CommandKeyword implements Keyword {
 
     RETRY("R", true), QUIT("Q", false);
 
@@ -12,11 +12,14 @@ public enum CommandKeyword {
         this.value = value;
     }
 
+    @Override
     public String getKey() {
         return key;
     }
 
-    public boolean getValue() {
+    @SuppressWarnings("unchecked")
+    @Override
+    public Boolean getValue() {
         return value;
     }
 }

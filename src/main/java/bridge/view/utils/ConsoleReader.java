@@ -1,8 +1,9 @@
 package bridge.view.utils;
 
-import bridge.view.constants.CommandKeyword;
-import bridge.view.constants.MovingKeyword;
+import bridge.view.constants.Keyword;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.Arrays;
 
 public class ConsoleReader {
 
@@ -14,24 +15,13 @@ public class ConsoleReader {
         return readValue;
     }
 
-    public boolean readLineAsKeyword(CommandKeyword[] keywords) {
+    public <T> T readLineAsKeyword(Keyword[] keywords) {
         String line = readLine();
-        for (CommandKeyword keyword : keywords) {
-            if (keyword.getKey().equals(line)) {
-                return keyword.getValue();
-            }
-        }
-        throw new IllegalArgumentException("입력 오류: 해당 입력값은 지정된 키워드만 허용됩니다.");
-    }
-
-    public String readLineAsKeyword(MovingKeyword[] keywords) {
-        String line = readLine();
-        for (MovingKeyword keyword : keywords) {
-            if (keyword.getKey().equals(line)) {
-                return keyword.getValue();
-            }
-        }
-        throw new IllegalArgumentException("입력 오류: 해당 입력값은 지정된 키워드만 허용됩니다.");
+        Keyword matchedKeyword = Arrays.stream(keywords)
+                .filter(keyword -> keyword.getKey().equals(line))
+                .findFirst()
+                .orElseThrow(() -> {throw new IllegalArgumentException("입력 오류: 해당 입력값은 지정된 키워드만 허용됩니다.");});
+        return matchedKeyword.getValue();
     }
 
     private int readLineAsInteger() {

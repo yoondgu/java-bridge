@@ -1,6 +1,6 @@
 package bridge.view.constants;
 
-public enum MovingKeyword {
+public enum MovingKeyword implements Keyword {
 
     UP("U", "U"), DOWN("D", "D");
 
@@ -12,10 +12,13 @@ public enum MovingKeyword {
         this.value = value;
     }
 
+    @Override
     public String getKey() {
         return key;
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
     public String getValue() {
         return value;
     }
