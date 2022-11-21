@@ -53,11 +53,11 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트_2() {
         assertSimpleTest(() -> {
-            runException("a", "1", "ㄱㄴㄷ", "3");
+            runException("a", "1", "03", "3");
             assertThat(output().split("\n")).containsSequence(
-                    ERROR_MESSAGE + " 입력 오류: 해당 입력값은 정수값만 허용됩니다.",
-                    ERROR_MESSAGE + " 입력 오류: 해당 입력값은 지정된 범위 내의 정수값만 허용됩니다.",
-                    ERROR_MESSAGE + " 입력 오류: 해당 입력값은 정수값만 허용됩니다.",
+                    ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 정수가 아닙니다.",
+                    ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 지정된 범위 내의 수가 아닙니다.",
+                    ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 정수가 아닙니다.",
                     "이동할 칸을 선택해주세요. (위: U, 아래: D)"
             );
         });

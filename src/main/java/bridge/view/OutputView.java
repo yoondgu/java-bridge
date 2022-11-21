@@ -52,7 +52,11 @@ public class OutputView {
         consolePrinter.printLine(message.getValue());
     }
 
-    public void printErrorMessage(String errorMessage) {
-        consolePrinter.printFormattedLine(OutputFormat.ERROR_MESSAGE, errorMessage);
+    public void printGameErrorMessage(String errorMessage) {
+        consolePrinter.printFormattedLine(OutputFormat.ERROR_GAME_MESSAGE, errorMessage);
+    }
+
+    public void printUserInputErrorMessage(String errorMessage) {
+        consolePrinter.printFormattedLine(OutputFormat.ERROR_USER_INPUT_MESSAGE, errorMessage);
     }
 }

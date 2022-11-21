@@ -23,10 +23,10 @@ public class MovingMapGenerator {
 
     private void validateMovingHistory(List<String> movingHistory) {
         if (movingHistory == null) {
-            throw new NullPointerException("출력 오류: 이동 결과가 null입니다.");
+            throw new NullPointerException("이동 결과가 null입니다.");
         }
         if (movingHistory.isEmpty()) {
-            throw new IllegalArgumentException("출력 오류: 이동 결과에 저장된 정보가 없습니다.");
+            throw new IllegalArgumentException("이동 결과에 저장된 정보가 없습니다.");
         }
     }
 

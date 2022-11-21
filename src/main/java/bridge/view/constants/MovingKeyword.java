@@ -1,8 +1,10 @@
 package bridge.view.constants;
 
+import bridge.model.domains.constants.Step;
+
 public enum MovingKeyword implements Keyword {
 
-    UP("U", "U"), DOWN("D", "D");
+    UP("U", Step.UP.getValue()), DOWN("D", Step.DOWN.getValue());
 
     private final String key;
     private final String value;

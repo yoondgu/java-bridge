@@ -1,30 +1,18 @@
 package bridge.view.utils;
 
 import bridge.view.constants.OutputFormat;
+import bridge.view.validator.ArgumentValidator;
 
 public class ConsolePrinter {
 
     public void printLine(Object content) {
-        validateContent(content);
+        ArgumentValidator.validateContentNotNull(content);
         System.out.println(content);
     }
 
     public void printFormattedLine(OutputFormat format, Object content) {
-        validateContent(content);
-        validateFormat(format);
+        ArgumentValidator.validateContentNotNull(content);
+        ArgumentValidator.validateFormatValueNotNull(format);
         System.out.printf(format.getValue() + "\n", content);
-    }
-
-    private void validateContent(Object content) {
-        if (content == null) {
-            throw new NullPointerException("기능 오류: 출력 메세지의 값이 null입니다.");
-        }
-    }
-
-    private void validateFormat(OutputFormat format) {
-        validateContent(format);
-        if (format.getValue() == null) {
-            throw new NullPointerException("기능 오류: 출력 형식의 값이 null입니다.");
-        }
     }
 }
