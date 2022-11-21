@@ -7,6 +7,8 @@ import bridge.view.OutputView;
 import bridge.view.constants.OutputMessage;
 import bridge.view.utils.MovingMapGenerator;
 
+import java.util.concurrent.Callable;
+
 public class GameController {
 
     private final InputView inputView = new InputView();
@@ -21,18 +23,18 @@ public class GameController {
             playRoundsUntilFailOrDone();
             showResult();
         } catch (Exception exception) {
-            exception.printStackTrace();
-            outputView.printErrorMessage(exception.getMessage());
+            // TODO 기능 오류 메시지는 모두 여기서 출력한다면 여기에 "기능 오류:" 쓰기
+            outputView.printErrorMessage(exception.toString());
         }
     }
 
-    private void initializeBridgeGame() {
+    private void initializeBridgeGame() throws Exception {
         outputView.printMessage(OutputMessage.ASK_BRIDGE_SIZE);
-        int bridgeSize = askBridgeSize();
+        int bridgeSize = askUntilGetLegalAnswer(inputView::readBridgeSize);
         bridgeGame = new BridgeGame(bridgeSize);
     }
 
-    private void playRoundsUntilFailOrDone() {
+    private void playRoundsUntilFailOrDone() throws Exception {
         boolean hasFailed = playOneRound();
         if (hasFailed) {
             retryOrQuit();
@@ -44,9 +46,10 @@ public class GameController {
         playRoundsUntilFailOrDone();
     }
 
-    private boolean playOneRound() {
+    private boolean playOneRound() throws Exception {
         outputView.printMessage(OutputMessage.ASK_MOVING);
-        bridgeGame.move(askMoving());
+        String moving = askUntilGetLegalAnswer(inputView::readMoving);
+        bridgeGame.move(moving);
         boolean hasFailed = bridgeGame.hasPlayerFailed();
         // TODO generator 없이 MovingMap 객체 생성 검토
         MovingMapGenerator generator = new MovingMapGenerator(bridgeGame.getPlayerMovingHistory(), hasFailed);
@@ -55,9 +58,10 @@ public class GameController {
         return hasFailed;
     }
 
-    private void retryOrQuit() {
+    private void retryOrQuit() throws Exception {
         outputView.printMessage(OutputMessage.ASK_RETRY_OR_QUIT);
-        if (askToRetry()) {
+        boolean toRetry = askUntilGetLegalAnswer(inputView::readGameCommand);
+        if (toRetry) {
             bridgeGame.retry();
             playRoundsUntilFailOrDone();
         }
@@ -69,31 +73,13 @@ public class GameController {
         outputView.printResult(bridgeGame.hasPlayerFailed(), bridgeGame.getTrialCount());
     }
 
-    // TODO Try/catch 중복 코드 제거 검토
-    private int askBridgeSize() {
+    private <T> T askUntilGetLegalAnswer(Callable<T> readInput) throws Exception {
         try {
-            return inputView.readBridgeSize();
+            return readInput.call();
         } catch (IllegalArgumentException exception) {
+            // TODO 입력 오류 메시지는 모두 여기서 출력한다면 "입력 오류:" 여기에 쓰기
             outputView.printErrorMessage(exception.getMessage());
-            return askBridgeSize();
-        }
-    }
-
-    private String askMoving() {
-        try {
-            return inputView.readMoving();
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            return askMoving();
-        }
-    }
-
-    private boolean askToRetry() {
-        try {
-            return inputView.readGameCommand();
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            return askToRetry();
+            return readInput.call();
         }
     }
 }
