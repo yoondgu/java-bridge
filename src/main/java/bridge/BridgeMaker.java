@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.model.domains.constants.Step;
 import bridge.model.domains.validator.BridgeValidator;
 
 import java.util.ArrayList;
@@ -31,8 +32,18 @@ public class BridgeMaker {
 
     private void addStepKeywordToBridge(List<String> bridge) {
         int bridgeNumber = bridgeNumberGenerator.generate();
-        String step = ExpressionConverter.STEP.convert(bridgeNumber);
+        String step = convertToStep(bridgeNumber);
         BridgeValidator.validateStep(step);
         bridge.add(step);
+    }
+
+    private static String convertToStep(int bridgeNumber) {
+        if (bridgeNumber == 1) {
+            return Step.UP.getValue();
+        }
+        if (bridgeNumber == 0) {
+            return Step.DOWN.getValue();
+        }
+        return null;
     }
 }

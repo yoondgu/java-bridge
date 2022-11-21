@@ -140,13 +140,13 @@
 ### 클래스 분리 및 설계 관련
 - [x] `BridgeGame`에서 직접 `BridgeMaker`를 생성하지 않고, 생성자로 전달받도록 하기 (다리 생성 책임 분리)
 - [x] `Player`에서 직접 `RemainingSteps`를 생성하지 않고, 생성자로 전달받도록 하기 (다리 검증 책임 분리)
-- [ ] 딱 한 번 쓰이는 `ExpressionConverter` 클래스 삭제하고 `BridgeMaker`에서 해당 기능 수행하기
+- [x] 딱 한 번 쓰이는 `ExpressionConverter` 클래스 삭제하고 `BridgeMaker`에서 해당 기능 수행하기
 - [ ] `Player`를 이용해서 `MovingMap`을 만들지 말고 `Player`가 현재 상태인 `MovingMap`을 직접 표현하게 하기(직접 map 객체 생성해서 반환)
     - 방법 1. 현재의 MovingMap 생성 로직을 `Player` 내부에서 처리하여 `BridgeGame`에서 이를 반환하는 메소드 수행
     - 방법 2. 현재의 MovingMap 생성 로직을 `Player` 내부에서 처리하고 `toString`으로 해당 정보가 `Player`의 상태로서 출력되도록 함.
       - `BridgeGame`에서는 `Player` 객체 자체를 컨트롤러에 반환하여 필요한 사용자 상태를 모두 전달함.
     - 방법 2는 상태를 한 번에 전달한다는 장점이 있지만, `Player` 객체가 완전히 노출되어 다른 공개 메소드가 오용될 여지가 있음.
-    - 따라서 방법 1 및 생성 로직을 단순화시키는 방향으로 리팩토링 진행.
+    - 따라서 방법 1 및 생성 로직을 단순화시키는 방향으로 리팩토링 진행. (가능하면 매번 새로 만드는 방법 x)
 - [ ] 프로젝트에서 전역적으로 쓰이지 않는 `ConsolePrinter`, `ConsoleReader`의 메소드를 인스턴스 메소드로 변경, `View` 객체에서 사용하게 만들기
 - [ ] 입력/출력 값 검증 로직 Validator 클래스로 분리하기
 - [ ] 입력 값에 대하여 도메인 로직 조건 검증 시 도메인 클래스 참조하는 문제 해결하기
