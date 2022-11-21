@@ -8,6 +8,14 @@ public class ConsoleReader {
 
     private ConsoleReader() { }
 
+    public static int readLineAsIntegerInRange(int minimum, int maximum) {
+        int readValue = readLineAsInteger();
+        if (readValue < minimum || readValue > maximum) {
+            throw new IllegalArgumentException("입력 오류: 해당 입력값은 지정된 범위 내의 정수값만 허용됩니다.");
+        }
+        return readValue;
+    }
+
     public static boolean readLineAsKeyword(CommandKeyword[] keywords) {
         String line = readLine();
         for (CommandKeyword keyword : keywords) {
@@ -28,7 +36,7 @@ public class ConsoleReader {
         throw new IllegalArgumentException("입력 오류: 해당 입력값은 지정된 키워드만 허용됩니다.");
     }
 
-    public static int readLineAsInteger() {
+    private static int readLineAsInteger() {
         String line = readLine();
         // TODO 정규표현식 활용해서 검증로직 분리 검토(정규표현식 사용 시 문자열 길이 1인 경우 별도 검증 필요)
         try {
@@ -38,7 +46,7 @@ public class ConsoleReader {
         }
     }
 
-    public static String readLine() {
+    private static String readLine() {
         return Console.readLine();
     }
 }

@@ -56,7 +56,7 @@ class ApplicationTest extends NsTest {
             runException("a", "1", "ㄱㄴㄷ", "3");
             assertThat(output().split("\n")).containsSequence(
                     ERROR_MESSAGE + " 입력 오류: 해당 입력값은 정수값만 허용됩니다.",
-                    ERROR_MESSAGE + " 입력 오류: 다리의 길이는 3 이상 20 이하만 허용됩니다.",
+                    ERROR_MESSAGE + " 입력 오류: 해당 입력값은 지정된 범위 내의 정수값만 허용됩니다.",
                     ERROR_MESSAGE + " 입력 오류: 해당 입력값은 정수값만 허용됩니다.",
                     "이동할 칸을 선택해주세요. (위: U, 아래: D)"
             );

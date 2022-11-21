@@ -1,11 +1,13 @@
 package bridge;
 
 import bridge.model.BridgeGame;
+import bridge.model.domains.constants.BridgeSize;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.constants.OutputMessage;
 
-import java.util.concurrent.Callable;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public class GameController {
 
@@ -25,9 +27,10 @@ public class GameController {
         }
     }
 
-    private void initializeBridgeGame(BridgeNumberGenerator generator) throws Exception {
+    private void initializeBridgeGame(BridgeNumberGenerator generator) {
         outputView.printMessage(OutputMessage.ASK_BRIDGE_SIZE);
-        int bridgeSize = askUntilGetLegalAnswer(inputView::readBridgeSize);
+        int bridgeSize = askUntilGetLegalAnswer(inputView::readBridgeSize,
+                BridgeSize.MINIMUM.getValue(), BridgeSize.MAXIMUM.getValue());
         bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(generator));
     }
 
@@ -37,13 +40,12 @@ public class GameController {
             retryOrQuit();
             return;
         }
-        if (bridgeGame.hasAllMovingDone()) {
-            return;
+        if (!bridgeGame.hasAllMovingDone()) {
+            playRoundsUntilFailOrDone();
         }
-        playRoundsUntilFailOrDone();
     }
 
-    private void playOneRound() throws Exception {
+    private void playOneRound() {
         outputView.printMessage(OutputMessage.ASK_MOVING);
         String moving = askUntilGetLegalAnswer(inputView::readMoving);
         bridgeGame.move(moving);
@@ -66,13 +68,23 @@ public class GameController {
         outputView.printResult(hasFailed, bridgeGame.getTrialCount());
     }
 
-    private <T> T askUntilGetLegalAnswer(Callable<T> readInput) throws Exception {
+    private <T> T askUntilGetLegalAnswer(Supplier<T> readInput) {
         try {
-            return readInput.call();
+            return readInput.get();
         } catch (IllegalArgumentException exception) {
             // TODO 입력 오류 메시지는 모두 여기서 출력한다면 "입력 오류:" 여기에 쓰기
             outputView.printErrorMessage(exception.getMessage());
             return askUntilGetLegalAnswer(readInput);
+        }
+    }
+    private <R> R askUntilGetLegalAnswer(BiFunction<Integer, Integer, R> readInput,
+                                         int minimum, int maximum) {
+        try {
+            return readInput.apply(minimum, maximum);
+        } catch (IllegalArgumentException exception) {
+            // TODO 입력 오류 메시지는 모두 여기서 출력한다면 "입력 오류:" 여기에 쓰기
+            outputView.printErrorMessage(exception.getMessage());
+            return askUntilGetLegalAnswer(readInput, minimum, maximum);
         }
     }
 }
