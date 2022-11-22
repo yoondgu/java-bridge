@@ -63,7 +63,6 @@ class RemainingStepsTest {
         remainingSteps.isMovableStep("D");
         remainingSteps.isMovableStep("U");
 
-        assertThat(remainingSteps.isEmpty()).isTrue();
         assertThatThrownBy(() -> remainingSteps.isMovableStep("U"))
                 .isInstanceOf(IllegalStateException.class);
     }

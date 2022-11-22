@@ -24,6 +24,19 @@ class MovingMapTest {
         assertThat(movingMap.toString()).isEqualTo(expected);
     }
 
+    private static Stream<Arguments> generateArgumentStreamForSuccess() {
+        List<Arguments> arguments = new LinkedList<>();
+        arguments.add(Arguments.of("[ O | O | O ]\n[   |   |   ]", newArrayList("U", "U", "U")));
+        arguments.add(Arguments.of("[ O |   | O ]\n[   | O |   ]", newArrayList("U", "D", "U")));
+        arguments.add(Arguments.of(
+                "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   |   ]\n" +
+                "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O | O ]",
+                newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U",
+                            "D", "U", "U", "D", "U", "D", "D")
+        ));
+        return arguments.stream();
+    }
+
     @DisplayName("이동한 다리 정보 형식을 변환해 현황 지도에 저장(실패 케이스)")
     @ParameterizedTest
     @MethodSource("generateArgumentStreamForFail")
@@ -37,28 +50,15 @@ class MovingMapTest {
         assertThat(movingMap.toString()).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> generateArgumentStreamForSuccess() {
-        List<Arguments> arguments = new LinkedList<>();
-        arguments.add(Arguments.of("[ O | O | O ]\n[   |   |   ]", newArrayList("U", "U", "U")));
-        arguments.add(Arguments.of("[ O |   | O ]\n[   | O |   ]", newArrayList("U", "D", "U")));
-        arguments.add(Arguments.of(
-        "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   |   ]\n" +
-                "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O | O ]",
-                newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U",
-                "D", "U", "U", "D", "U", "D", "D")
-        ));
-        return arguments.stream();
-    }
-
     private static Stream<Arguments> generateArgumentStreamForFail() {
         List<Arguments> arguments = new LinkedList<>();
         arguments.add(Arguments.of("[ O | O |   ]\n[   |   | X ]", newArrayList("U", "U", "D")));
         arguments.add(Arguments.of("[ O |   | X ]\n[   | O |   ]", newArrayList("U", "D", "U")));
         arguments.add(Arguments.of(
-        "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   | X ]\n" +
+                "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   | X ]\n" +
                 "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O |   ]",
                 newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U",
-                "D", "U", "U", "D", "U", "D", "U")
+                            "D", "U", "U", "D", "U", "D", "U")
         ));
         return arguments.stream();
     }

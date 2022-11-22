@@ -15,10 +15,12 @@ class PlayerTest {
     @Test
     void addOneStep() {
         Player player = new Player(steps);
+        player.addOneMoving("U");
+
+        assertThat(player.isFailed()).isFalse();
 
         player.addOneMoving("U");
-        assertThat(player.isFailed()).isFalse();
-        player.addOneMoving("U");
+
         assertThat(player.isFailed()).isTrue();
     }
 

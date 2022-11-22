@@ -10,8 +10,7 @@ public enum OutputFormat {
 
     ERROR_MESSAGE("[ERROR] %s"),
     ERROR_USER_INPUT_MESSAGE("[ERROR] 사용자 입력 오류: %s"),
-    ERROR_GAME_MESSAGE("[ERROR] 게임 기능 오류: %s"),
-    ;
+    ERROR_GAME_MESSAGE("[ERROR] 게임 기능 오류: %s");
 
     private final String value;
 

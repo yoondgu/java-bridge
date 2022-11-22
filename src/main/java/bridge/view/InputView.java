@@ -11,8 +11,6 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public InputView() { }
-
     /**
      * 다리의 길이를 입력받는다.
      */
