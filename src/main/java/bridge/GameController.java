@@ -88,9 +88,8 @@ public class GameController {
      */
     private void showResult() {
         outputView.printMessage(OutputMessage.SHOW_RESULT);
-        boolean hasFailed = bridgeGame.hasPlayerFailed();
         outputView.printMap(movingMap);
-        outputView.printResult(hasFailed, bridgeGame.getTrialCount());
+        outputView.printResult(bridgeGame.hasPlayerFailed(), bridgeGame.getTrialCount());
     }
 
     /**
