@@ -16,7 +16,7 @@ public class ArgumentValidator {
 
     public static void validateIntegerInRange(int value, int minimum, int maximum) {
         if (value < minimum || value > maximum) {
-            throw new IllegalArgumentException("주어진 값이 지정된 범위 내의 수가 아닙니다.");
+            throw new IllegalArgumentException(String.format("%d부터 %d 사이의 정수를 입력하세요.", minimum, maximum));
         }
     }
 

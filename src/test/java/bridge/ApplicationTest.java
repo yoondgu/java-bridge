@@ -77,7 +77,7 @@ class ApplicationTest extends NsTest {
             runException("a", "1", "03", "3");
             assertThat(output().split("\n")).containsSequence(
                     ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 정수가 아닙니다.",
-                    ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 지정된 범위 내의 수가 아닙니다.",
+                    ERROR_MESSAGE + " 사용자 입력 오류: 3부터 20 사이의 정수를 입력하세요.",
                     ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 정수가 아닙니다.",
                     "이동할 칸을 선택해주세요. (위: U, 아래: D)"
             );
