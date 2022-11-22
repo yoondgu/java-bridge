@@ -37,7 +37,14 @@ public class BridgeGame {
 
     private void refreshGameStatus() {
         player = new Player(new RemainingSteps(bridge));
+        validateTrialCount();
         this.trialCount++;
+    }
+
+    private void validateTrialCount() {
+        if (trialCount == Integer.MAX_VALUE) {
+            throw new IllegalStateException("재시도 횟수가 너무 많아 더 이상 게임을 진행할 수 없습니다.");
+        }
     }
 
     public boolean hasAllMovingDone() {
