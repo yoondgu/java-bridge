@@ -144,6 +144,7 @@
 - [x] 에러 메시지에 추가한 `사용자 입력 오류:`, `게임 기능 오류:` 형식을 출력 위치에 따라 자동으로 적용시키기 (출력 시 오류는 기능 오류에 포함됨)
 - [x] `OutputView`의 변환 로직을 성공/실패 키워드를 저장하는 `ResultKeyword`로 분리
 - [x] `BridgeMaker`의 변환 로직을 다리 칸 위치 도메인 키워드를 저장하는 `Step`로 분리
+- [x] `MovingMapGenerator`의 변환 로직, 판별 로직을 `MovingDisplay`, `MovingKeyword`로 분리
 - [x] 에러메시지는 각 예외를 발생시키는 `BridgeValidator`, `ArgumentValidator` 클래스에서 한 번에 볼 수 있기 때문에 별도 상수 클래스로 분리하지 않기로 함.
 
 ### 테스트 관련

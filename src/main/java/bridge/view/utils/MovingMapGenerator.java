@@ -51,8 +51,8 @@ public class MovingMapGenerator {
         for (int index = 0; index < movingHistory.size(); index++) {
             String moving = movingHistory.get(index);
             boolean isFailedMoving = isFailedMoving(index);
-            up.add(convertMovingToDisplay(moving, MovingKeyword.UP, isFailedMoving));
-            down.add(convertMovingToDisplay(moving, MovingKeyword.DOWN, isFailedMoving));
+            up.add(MovingMapDisplay.convertMovingToDisplay(MovingKeyword.UP.isSameStepMoving(moving), isFailedMoving));
+            down.add(MovingMapDisplay.convertMovingToDisplay(MovingKeyword.DOWN.isSameStepMoving(moving), isFailedMoving));
         }
     }
 
@@ -61,19 +61,5 @@ public class MovingMapGenerator {
             return isFailed;
         }
         return false;
-    }
-
-    private String convertMovingToDisplay(String moving, MovingKeyword movingKeyword, boolean isFailedMoving) {
-        if (moving.equals(movingKeyword.getValue())) {
-            return convertResultToDisplay(isFailedMoving);
-        }
-        return MovingMapDisplay.NOTHING.getDisplay();
-    }
-
-    private String convertResultToDisplay(boolean isFailedMoving) {
-        if (isFailedMoving) {
-            return MovingMapDisplay.FAIL.getDisplay();
-        }
-        return MovingMapDisplay.SUCCESS.getDisplay();
     }
 }

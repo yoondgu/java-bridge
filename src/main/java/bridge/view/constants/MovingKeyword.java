@@ -24,4 +24,8 @@ public enum MovingKeyword implements Keyword {
     public String getValue() {
         return value;
     }
+
+    public boolean isSameStepMoving(String moving) {
+        return value.equals(moving);
+    }
 }
