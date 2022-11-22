@@ -1,28 +1,17 @@
 package bridge.model.domains;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
 
     private final RemainingSteps remainingSteps;
-    private final List<String> movingHistory;
-
     private boolean isFailed = false;
 
     public Player(RemainingSteps steps) {
         this.remainingSteps = steps;
-        this.movingHistory = new ArrayList<>();
     }
 
     public void addOneMoving(String moving) {
         validateStatus();
-        movingHistory.add(moving);
         isFailed = !remainingSteps.isMovableStep(moving);
-    }
-
-    public List<String> getMovingHistory() {
-        return movingHistory;
     }
 
     public boolean hasAllMovingDone() {

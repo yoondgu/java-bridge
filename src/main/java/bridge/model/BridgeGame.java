@@ -44,11 +44,6 @@ public class BridgeGame {
         this.trialCount++;
     }
 
-
-    public List<String> getPlayerMovingHistory() {
-        return player.getMovingHistory();
-    }
-
     public boolean hasPlayerFailed() {
         return player.isFailed();
     }
