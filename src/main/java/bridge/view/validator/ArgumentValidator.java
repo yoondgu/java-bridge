@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class ArgumentValidator {
 
-    private static final String REGEX_INTEGER = "^[^0]\\d*";
+    private static final String REGEX_INTEGER = "^(0|-?[1-9][0-9]*)$";
 
     public static void validateIntegerInRange(int value, int minimum, int maximum) {
         if (value < minimum || value > maximum) {
@@ -26,14 +26,7 @@ public class ArgumentValidator {
     }
 
     public static void validateInteger(String value) {
-        validateDigit(value.charAt(0));
         if (!value.matches(REGEX_INTEGER)) {
-            throw new IllegalArgumentException("주어진 값이 정수가 아닙니다.");
-        }
-    }
-
-    private static void validateDigit(char value) {
-        if (Character.isLetter(value)) {
             throw new IllegalArgumentException("주어진 값이 정수가 아닙니다.");
         }
     }
