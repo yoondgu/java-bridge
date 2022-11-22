@@ -147,7 +147,7 @@
     - `OutputView`가 전달받은 `MovingMap`을 바로 출력하도록 함. (toString 오버라이딩)
     - 이에 따라 `Player`, `BridgeGame`에서 `movingHistory` 필드 및 관련 메소드 삭제함.
 - [x] 입력 값에 대하여 도메인 로직 조건 검증 시 도메인 클래스 참조하는 문제 해결하기
-- [x] `ConsolePrinter`, `ConsoleReader`의 메소드를 인스턴스 메소드로 변경, `OutputView`, `InputView`에서 해당 클래스 객체로 사용하도록 강제하기
+- [x] `ConsolePrinter`, `ConsoleReader`를 `OutputView`, `InputView`의 정적 내부 클래스로 변경(요구사항 고려, 메모리 낭비 방지 및 은닉화)
 - [x] 입출력 값 검증 로직을 모두 `ArgumentValidator`로 분리하기
 - [x] 에러 메시지에 추가한 `사용자 입력 오류:`, `게임 기능 오류:` 형식을 출력 위치에 따라 자동으로 적용시키기 (출력 시 오류는 기능 오류에 포함됨)
 - [x] `OutputView`의 변환 로직을 성공/실패 키워드를 저장하는 `ResultKeyword`로 분리
