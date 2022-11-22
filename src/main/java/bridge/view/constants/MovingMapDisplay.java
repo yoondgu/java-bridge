@@ -12,15 +12,15 @@ public enum MovingMapDisplay {
         this.display = display;
     }
 
-    public String getDisplay() {
-        return display;
-    }
-
     public static String convertMovingToDisplay(boolean isSameStepMoving, boolean isFailedMoving) {
         if (isSameStepMoving) {
             return convertResultToDisplay(isFailedMoving);
         }
         return NOTHING.getDisplay();
+    }
+
+    private String getDisplay() {
+        return display;
     }
 
     private static String convertResultToDisplay(boolean isFailedMoving) {

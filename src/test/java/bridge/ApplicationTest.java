@@ -49,6 +49,28 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("기능 테스트 2: 게임 재시도 시 이동 현황 초기화")
+    @Test
+    void 기능_테스트_2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "[   ]",
+                    "[ X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[ O |   | O ]",
+                    "[   | O |   ]"
+            );
+
+            int firstTrialUpSideIndex = output().indexOf("[   ]");
+            int firstTrialDownSideIndex = output().indexOf("[ X ]");
+            assertThat(firstTrialUpSideIndex).isLessThan(firstTrialDownSideIndex);
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
     @DisplayName("예외 테스트 2: 2회 이상 잘못된 값을 입력해도 재입력 진행")
     @Test
     void 예외_테스트_2() {
