@@ -25,14 +25,15 @@ public class ArgumentValidator {
                 .orElseThrow(() -> {throw new IllegalArgumentException("주어진 값이 지정된 키워드가 아닙니다.");});
     }
 
-    public static void validateDigit(char value) {
-        if (Character.isLetter(value)) {
+    public static void validateInteger(String value) {
+        validateDigit(value.charAt(0));
+        if (!value.matches(REGEX_INTEGER)) {
             throw new IllegalArgumentException("주어진 값이 정수가 아닙니다.");
         }
     }
 
-    public static void validateInteger(String value) {
-        if (!value.matches(REGEX_INTEGER)) {
+    private static void validateDigit(char value) {
+        if (Character.isLetter(value)) {
             throw new IllegalArgumentException("주어진 값이 정수가 아닙니다.");
         }
     }

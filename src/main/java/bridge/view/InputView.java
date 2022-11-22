@@ -53,9 +53,6 @@ public class InputView {
 
         static int readLineAsInteger() throws IllegalArgumentException {
             String line = readLine();
-            if (line.length() == 1) {
-                ArgumentValidator.validateDigit(line.charAt(0));
-            }
             ArgumentValidator.validateInteger(line);
             return Integer.parseInt(line);
         }
