@@ -53,21 +53,20 @@ class ApplicationTest extends NsTest {
     @Test
     void 기능_테스트_2() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "D", "R", "U", "D", "U");
+            run("3", "D", "R", "U");
             assertThat(output()).contains(
                     "[   ]",
                     "[ X ]",
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
-                    "[ O |   | O ]",
-                    "[   | O |   ]"
+                    "[ O ]",
+                    "[   ]"
             );
 
-            int firstTrialUpSideIndex = output().indexOf("[   ]");
             int firstTrialDownSideIndex = output().indexOf("[ X ]");
-            assertThat(firstTrialUpSideIndex).isLessThan(firstTrialDownSideIndex);
-            int upSideIndex = output().indexOf("[ O |   | O ]");
-            int downSideIndex = output().indexOf("[   | O |   ]");
-            assertThat(upSideIndex).isLessThan(downSideIndex);
+            int retryMessageIndex = output().indexOf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            int secondTrialUpSideIndex = output().indexOf("[ O ]");
+            assertThat(firstTrialDownSideIndex).isLessThan(retryMessageIndex);
+            assertThat(retryMessageIndex).isLessThan(secondTrialUpSideIndex);
         }, 1, 0, 1);
     }
 

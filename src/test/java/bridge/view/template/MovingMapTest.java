@@ -20,6 +20,7 @@ class MovingMapTest {
     void addRoundsWithSuccess(String expected, List<String> moving) {
         MovingMap movingMap = new MovingMap();
         moving.forEach(move -> movingMap.addOneRound(false, move));
+
         assertThat(movingMap.toString()).isEqualTo(expected);
     }
 
@@ -32,13 +33,13 @@ class MovingMapTest {
         moving.remove(moving.size() -1);
         moving.forEach(move -> movingMap.addOneRound(false, move));
         movingMap.addOneRound(true, lastMoving);
+
         assertThat(movingMap.toString()).isEqualTo(expected);
     }
 
     private static Stream<Arguments> generateArgumentStreamForSuccess() {
         List<Arguments> listOfArguments = new LinkedList<>();
         listOfArguments.add(Arguments.of("[ O | O | O ]\n[   |   |   ]", newArrayList("U", "U", "U")));
-        listOfArguments.add(Arguments.of("[ O | O |   ]\n[   |   | O ]", newArrayList("U", "U", "D")));
         listOfArguments.add(Arguments.of("[ O |   | O ]\n[   | O |   ]", newArrayList("U", "D", "U")));
         listOfArguments.add(Arguments.of(
                 "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   |   ]\n" +
@@ -50,7 +51,6 @@ class MovingMapTest {
 
     private static Stream<Arguments> generateArgumentStreamForFail() {
         List<Arguments> listOfArguments = new LinkedList<>();
-        listOfArguments.add(Arguments.of("[ O | O |   ]\n[   |   | X ]", newArrayList("U", "U", "D")));
         listOfArguments.add(Arguments.of("[ O | O |   ]\n[   |   | X ]", newArrayList("U", "U", "D")));
         listOfArguments.add(Arguments.of("[ O |   | X ]\n[   | O |   ]", newArrayList("U", "D", "U")));
         listOfArguments.add(Arguments.of(

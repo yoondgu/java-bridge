@@ -16,6 +16,7 @@ class BridgeGameTest {
     void retry(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()));
         bridgeGame.retry();
+
         assertThat(bridgeGame.getTrialCount()).isEqualTo(2);
     }
 }

@@ -15,6 +15,7 @@ class PlayerTest {
     @Test
     void addOneStep() {
         Player player = new Player(steps);
+
         player.addOneMoving("U");
         assertThat(player.isFailed()).isFalse();
         player.addOneMoving("U");
@@ -27,6 +28,7 @@ class PlayerTest {
         Player player = new Player(steps);
         player.addOneMoving("U");
         player.addOneMoving("U");
+
         assertThatThrownBy(() -> player.addOneMoving("U"))
                 .isInstanceOf(IllegalStateException.class);
     }
@@ -38,6 +40,7 @@ class PlayerTest {
         player.addOneMoving("U");
         player.addOneMoving("D");
         player.addOneMoving("U");
+
         assertThatThrownBy(() -> player.addOneMoving("U"))
                 .isInstanceOf(IllegalStateException.class);
     }
