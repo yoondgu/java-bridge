@@ -15,25 +15,21 @@ public class BridgeGame {
     private Player player;
     private int trialCount;
 
-    public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) {
+    public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) throws IllegalArgumentException, NullPointerException {
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.player = new Player(new RemainingSteps(bridge));
         this.trialCount = 1;
     }
 
     /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 사용자가 칸을 이동할 때 사용한다.
      */
-    public void move(String moving) {
+    public void move(String moving) throws IllegalStateException {
         player.addOneMoving(moving);
     }
 
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 사용자가 게임을 다시 시도할 때 사용한다.
      */
     public void retry() {
         refreshGameStatus();
@@ -44,12 +40,12 @@ public class BridgeGame {
         this.trialCount++;
     }
 
-    public boolean hasPlayerFailed() {
-        return player.isFailed();
-    }
-
     public boolean hasAllMovingDone() {
         return player.hasAllMovingDone();
+    }
+
+    public boolean hasPlayerFailed() {
+        return player.isFailed();
     }
 
     public int getTrialCount() {

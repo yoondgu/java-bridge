@@ -5,6 +5,9 @@ import bridge.model.domains.constants.Step;
 
 import java.util.List;
 
+/**
+ * 도메인 로직의 다리 관련 예외 사항을 검증하고 예외를 발생시키는 클래스
+ */
 public class BridgeValidator {
 
     private BridgeValidator() { }

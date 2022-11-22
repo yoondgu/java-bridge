@@ -5,7 +5,7 @@ import bridge.view.constants.MovingKeyword;
 import bridge.view.utils.ConsoleReader;
 
 /**
- * 사용자로부터 입력을 받는 역할을 한다.
+ * 사용자로부터 입력을 받는 클래스
  */
 public class InputView {
 

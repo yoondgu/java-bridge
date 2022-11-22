@@ -6,14 +6,19 @@ import bridge.view.constants.MovingMapFormat;
 
 import java.util.StringJoiner;
 
+/**
+ * 이동 현황 정보를 출력을 위해 정해진 지도 형식으로 저장하는 템플릿 클래스
+ */
 public class MovingMap {
 
     private final StringJoiner up = new StringJoiner(MovingMapFormat.DELIMITER.getValue());
     private final StringJoiner down = new StringJoiner(MovingMapFormat.DELIMITER.getValue());
 
     public void addOneRound(boolean hasFailed, String moving) {
-        up.add(MovingMapDisplay.convertMovingToDisplay(MovingKeyword.UP.isSameStepMoving(moving), hasFailed));
-        down.add(MovingMapDisplay.convertMovingToDisplay(MovingKeyword.DOWN.isSameStepMoving(moving), hasFailed));
+        String upDisplay = MovingMapDisplay.convert(hasFailed, MovingKeyword.UP.isSameStepMoving(moving));
+        String downDisplay = MovingMapDisplay.convert(hasFailed, MovingKeyword.DOWN.isSameStepMoving(moving));
+        up.add(upDisplay);
+        down.add(downDisplay);
     }
 
     @Override

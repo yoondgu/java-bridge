@@ -1,5 +1,8 @@
 package bridge.view.constants;
 
+/**
+ * 출력 메시지에 사용되는 형식을 저장하는 상수 클래스
+ */
 public enum OutputFormat {
 
     RESULT_HAS_SUCCEED("게임 성공 여부: %s"),

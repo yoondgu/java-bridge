@@ -27,13 +27,14 @@ class BridgeMakerTest {
     }
 
     private static Stream<Arguments> generateArgumentStreamOfSuccessCase() {
-        List<Arguments> listOfArguments = new LinkedList<>();
-        listOfArguments.add(Arguments.of(newArrayList(1, 0, 0), new String[]{"U", "D", "D"}));
-        listOfArguments.add(Arguments.of(
+        List<Arguments> arguments = new LinkedList<>();
+        arguments.add(Arguments.of(newArrayList(1, 0, 0), new String[]{"U", "D", "D"}));
+        arguments.add(Arguments.of(
                 newArrayList(0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0),
-                new String[]{"D", "U", "D", "U", "D", "D", "U", "D", "U", "D", "D", "U", "D", "U", "D", "D", "U", "D", "U", "D"}
+                new String[]{"D", "U", "D", "U", "D", "D", "U", "D", "U", "D",
+                            "D", "U", "D", "U", "D", "D", "U", "D", "U", "D"}
         ));
-        return listOfArguments.stream();
+        return arguments.stream();
     }
 
     @DisplayName("일치하는 다리 칸 정보가 없는 경우 예외 발생")

@@ -1,8 +1,12 @@
 package bridge.model.domains.constants;
 
+/**
+ * 게임 규칙으로 정해진 다리 칸 위치의 값을 저장하는 상수 클래스
+ */
 public enum Step {
 
-    UP("U"), DOWN("D");
+    UP("U"),
+    DOWN("D");
 
     private final String value;
 

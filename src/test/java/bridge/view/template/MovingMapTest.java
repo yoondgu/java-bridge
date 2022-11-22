@@ -38,27 +38,29 @@ class MovingMapTest {
     }
 
     private static Stream<Arguments> generateArgumentStreamForSuccess() {
-        List<Arguments> listOfArguments = new LinkedList<>();
-        listOfArguments.add(Arguments.of("[ O | O | O ]\n[   |   |   ]", newArrayList("U", "U", "U")));
-        listOfArguments.add(Arguments.of("[ O |   | O ]\n[   | O |   ]", newArrayList("U", "D", "U")));
-        listOfArguments.add(Arguments.of(
-                "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   |   ]\n" +
-                            "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O | O ]",
-                newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U", "D", "U", "U", "D", "U", "D", "D")
+        List<Arguments> arguments = new LinkedList<>();
+        arguments.add(Arguments.of("[ O | O | O ]\n[   |   |   ]", newArrayList("U", "U", "U")));
+        arguments.add(Arguments.of("[ O |   | O ]\n[   | O |   ]", newArrayList("U", "D", "U")));
+        arguments.add(Arguments.of(
+        "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   |   ]\n" +
+                "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O | O ]",
+                newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U",
+                "D", "U", "U", "D", "U", "D", "D")
         ));
-        return listOfArguments.stream();
+        return arguments.stream();
     }
 
     private static Stream<Arguments> generateArgumentStreamForFail() {
-        List<Arguments> listOfArguments = new LinkedList<>();
-        listOfArguments.add(Arguments.of("[ O | O |   ]\n[   |   | X ]", newArrayList("U", "U", "D")));
-        listOfArguments.add(Arguments.of("[ O |   | X ]\n[   | O |   ]", newArrayList("U", "D", "U")));
-        listOfArguments.add(Arguments.of(
-                "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   | X ]\n" +
-                            "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O |   ]",
-                newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U", "D", "U", "U", "D", "U", "D", "U")
+        List<Arguments> arguments = new LinkedList<>();
+        arguments.add(Arguments.of("[ O | O |   ]\n[   |   | X ]", newArrayList("U", "U", "D")));
+        arguments.add(Arguments.of("[ O |   | X ]\n[   | O |   ]", newArrayList("U", "D", "U")));
+        arguments.add(Arguments.of(
+        "[ O |   | O | O |   | O | O |   | O | O |   | O | O |   | O |   | X ]\n" +
+                "[   | O |   |   | O |   |   | O |   |   | O |   |   | O |   | O |   ]",
+                newArrayList("U", "D", "U", "U", "D", "U", "U", "D", "U", "U",
+                "D", "U", "U", "D", "U", "D", "U")
         ));
-        return listOfArguments.stream();
+        return arguments.stream();
     }
 
 }

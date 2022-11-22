@@ -5,6 +5,9 @@ import bridge.view.constants.OutputFormat;
 
 import java.util.Arrays;
 
+/**
+ * 여러 조건에 따라 인자값의 유효성을 검증하는 클래스
+ */
 public class ArgumentValidator {
 
     private static final String REGEX_INTEGER = "^[^0]\\d*";
