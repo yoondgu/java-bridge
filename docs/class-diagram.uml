@@ -3,31 +3,29 @@
   <ID>JAVA</ID>
   <OriginalElement>/Users/doyoung/projects/woowa-precourse/java-bridge/src/main/java/bridge</OriginalElement>
   <nodes>
-    <node x="152.9654207205338" y="626.0065334358186">bridge.view.utils.ConsoleReader</node>
-    <node x="828.4169513327786" y="479.5065334358186">bridge.model.domains.constants.BridgeSize</node>
-    <node x="518.3404207205338" y="1455.5065334358187">bridge.Application</node>
     <node x="158.9654207205338" y="335.137712143043">bridge.view.constants.MovingKeyword</node>
-    <node x="-269.6543559924328" y="1321.1245196003074">bridge.view.constants.MovingMapDisplay</node>
-    <node x="-127.03457927946619" y="335.137712143043">bridge.view.constants.ResultKeyword</node>
-    <node x="828.4169513327786" y="885.5065334358186">bridge.BridgeRandomNumberGenerator</node>
-    <node x="58.6773979068455" y="1365.1245196003074">bridge.view.constants.MovingMapFormat</node>
-    <node x="-184.03457927946624" y="852.5065334358186">bridge.view.OutputView</node>
-    <node x="-560.4861098917111" y="1071.9304878084422">bridge.view.constants.OutputFormat</node>
-    <node x="835.4169513327786" y="672.0065334358186">bridge.model.domains.validator.BridgeValidator</node>
-    <node x="513.2154207205338" y="409.5065334358186">bridge.model.domains.RemainingSteps</node>
-    <node x="-418.0345792794662" y="335.137712143043">bridge.view.constants.CommandKeyword</node>
-    <node x="-204.03457927946624" y="648.0065334358186">bridge.view.utils.ConsolePrinter</node>
-    <node x="391.34042072053376" y="1109.5065334358187">bridge.GameController</node>
-    <node x="172.4654207205338" y="874.5065334358186">bridge.view.InputView</node>
-    <node x="828.4169513327786" y="1011.5065334358186">bridge.BridgeMaker</node>
-    <node x="494.21542072053376" y="819.5065334358186">bridge.model.BridgeGame</node>
-    <node x="59.1773979068455" y="1205.8753547285942">bridge.view.template.MovingMap</node>
-    <node x="-633.8739425913308" y="603.5065334358186">bridge.view.validator.ArgumentValidator</node>
-    <node x="475.21542072053376" y="603.5065334358186">bridge.model.domains.Player</node>
-    <node x="-560.4861098917111" y="819.5065334358187">bridge.view.constants.OutputMessage</node>
-    <node x="1204.936981058735" y="1047.7459646425827">bridge.BridgeNumberGenerator</node>
+    <node x="518.3404207205338" y="1455.5065334358187">bridge.Application</node>
     <node x="-55.79978840494135" y="177.62820643962095">bridge.view.constants.Keyword</node>
+    <node x="828.4169513327786" y="885.5065334358186">bridge.BridgeRandomNumberGenerator</node>
+    <node x="1204.936981058735" y="1047.7459646425827">bridge.BridgeNumberGenerator</node>
+    <node x="835.4169513327786" y="672.0065334358186">bridge.model.domains.validator.BridgeValidator</node>
+    <node x="391.34042072053376" y="1109.5065334358187">bridge.GameController</node>
+    <node x="494.21542072053376" y="819.5065334358186">bridge.model.BridgeGame</node>
     <node x="1079.8275880209137" y="457.5065334358186">bridge.model.domains.constants.Step</node>
+    <node x="-418.0345792794662" y="335.137712143043">bridge.view.constants.CommandKeyword</node>
+    <node x="828.4169513327786" y="479.5065334358186">bridge.model.domains.constants.BridgeSize</node>
+    <node x="58.6773979068455" y="1365.1245196003074">bridge.view.constants.MovingMapFormat</node>
+    <node x="-549.6467562795438" y="1068.700565227684">bridge.view.constants.OutputMessage</node>
+    <node x="59.1773979068455" y="1205.8753547285942">bridge.view.template.MovingMap</node>
+    <node x="-671.6467562795438" y="852.7005652276839">bridge.view.validator.ArgumentValidator</node>
+    <node x="828.4169513327786" y="1011.5065334358186">bridge.BridgeMaker</node>
+    <node x="172.4654207205338" y="874.5065334358186">bridge.view.InputView</node>
+    <node x="513.2154207205338" y="409.5065334358186">bridge.model.domains.RemainingSteps</node>
+    <node x="-127.03457927946619" y="335.137712143043">bridge.view.constants.ResultKeyword</node>
+    <node x="475.21542072053376" y="603.5065334358186">bridge.model.domains.Player</node>
+    <node x="-184.03457927946624" y="852.5065334358186">bridge.view.OutputView</node>
+    <node x="-549.6467562795438" y="1321.1245196003074">bridge.view.constants.OutputFormat</node>
+    <node x="-269.6543559924328" y="1321.1245196003074">bridge.view.constants.MovingMapDisplay</node>
   </nodes>
   <notes />
   <edges>
@@ -49,45 +47,37 @@
       <point x="40.0" y="-82.0" />
       <point x="0.0" y="71.0" />
     </edge>
-    <edge source="bridge.view.OutputView" target="bridge.view.utils.ConsolePrinter" relationship="TO_ONE">
-      <point x="0.0" y="-82.0" />
-      <point x="0.0" y="37.5" />
-    </edge>
     <edge source="bridge.GameController" target="bridge.view.template.MovingMap" relationship="TO_ONE">
       <point x="-210.0" y="23.368821292775465" />
       <point x="134.0" y="15.0" />
     </edge>
-    <edge source="bridge.view.OutputView" target="bridge.view.utils.ConsolePrinter" relationship="CREATE">
-      <point x="15.0" y="-82.0" />
-      <point x="15.0" y="37.5" />
-    </edge>
     <edge source="bridge.GameController" target="bridge.view.template.MovingMap" relationship="CREATE">
       <point x="-210.0" y="8.368821292775465" />
       <point x="134.0" y="0.0" />
-    </edge>
-    <edge source="bridge.model.BridgeGame" target="bridge.model.domains.Player" relationship="CREATE">
-      <point x="-9.5" y="-115.0" />
-      <point x="0.0" y="82.0" />
     </edge>
     <edge source="bridge.GameController" target="bridge.BridgeMaker" relationship="CREATE">
       <point x="210.0" y="0.0" />
       <point x="1003.4169513327786" y="1257.5065334358187" />
       <point x="0.0" y="49.0" />
     </edge>
+    <edge source="bridge.model.BridgeGame" target="bridge.model.domains.Player" relationship="CREATE">
+      <point x="-9.5" y="-115.0" />
+      <point x="0.0" y="82.0" />
+    </edge>
     <edge source="bridge.GameController" target="bridge.view.InputView" relationship="TO_ONE">
       <point x="-143.625" y="-148.0" />
       <point x="457.71542072053376" y="934.5065334358186" />
       <point x="118.5" y="0.0" />
     </edge>
-    <edge source="bridge.model.BridgeGame" target="bridge.model.domains.RemainingSteps" relationship="CREATE">
-      <point x="112.5" y="0.0" />
-      <point x="736.7154207205338" y="934.5065334358186" />
-      <point x="99.5" y="71.0" />
-    </edge>
     <edge source="bridge.GameController" target="bridge.view.OutputView" relationship="TO_ONE">
       <point x="-210.0" y="-84.13117870722454" />
       <point x="-20.534579279466243" y="1173.3753547285942" />
       <point x="15.0" y="82.0" />
+    </edge>
+    <edge source="bridge.model.BridgeGame" target="bridge.model.domains.RemainingSteps" relationship="CREATE">
+      <point x="112.5" y="0.0" />
+      <point x="736.7154207205338" y="934.5065334358186" />
+      <point x="99.5" y="71.0" />
     </edge>
     <edge source="bridge.Application" target="bridge.GameController" relationship="CREATE">
       <point x="0.0" y="-26.5" />
@@ -102,23 +92,15 @@
       <point x="1321.436981058735" y="934.5065334358186" />
       <point x="0.0" y="-26.5" />
     </edge>
-    <edge source="bridge.view.InputView" target="bridge.view.utils.ConsoleReader" relationship="CREATE">
-      <point x="0.0" y="-60.0" />
-      <point x="0.0" y="59.5" />
+    <edge source="bridge.BridgeMaker" target="bridge.BridgeNumberGenerator" relationship="TO_ONE">
+      <point x="175.0" y="13.739431206764039" />
+      <point x="-116.5" y="0.0" />
     </edge>
     <edge source="bridge.view.constants.MovingKeyword" target="bridge.view.constants.Keyword" relationship="REALIZATION">
       <point x="3.701539910707652E-4" y="-114.99953343581859" />
       <point x="290.9657908745249" y="294.1311787072244" />
       <point x="15.699790874524894" y="294.1311787072244" />
       <point x="-4.2072053375363794E-4" y="37.49997226760347" />
-    </edge>
-    <edge source="bridge.BridgeMaker" target="bridge.BridgeNumberGenerator" relationship="TO_ONE">
-      <point x="175.0" y="13.739431206764039" />
-      <point x="-116.5" y="0.0" />
-    </edge>
-    <edge source="bridge.view.InputView" target="bridge.view.utils.ConsoleReader" relationship="TO_ONE">
-      <point x="15.0" y="-60.0" />
-      <point x="15.0" y="59.5" />
     </edge>
     <edge source="bridge.GameController" target="bridge.BridgeRandomNumberGenerator" relationship="CREATE">
       <point x="177.375" y="-148.0" />
@@ -141,7 +123,7 @@
       <point x="0.0" y="82.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.6457949662369554" showDependencies="true" x="451.13317490494296" y="728.1249999999997" />
+  <settings layout="Hierarchic" zoom="0.6457949662369554" showDependencies="true" x="471.41872623574125" y="858.0251901140681" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
