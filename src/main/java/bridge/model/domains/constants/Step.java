@@ -13,4 +13,14 @@ public enum Step {
     public String getValue() {
         return value;
     }
+
+    public static String convert(int bridgeNumber) {
+        if (bridgeNumber == 1) {
+            return UP.getValue();
+        }
+        if (bridgeNumber == 0) {
+            return DOWN.getValue();
+        }
+        return null;
+    }
 }

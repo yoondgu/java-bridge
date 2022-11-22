@@ -32,18 +32,8 @@ public class BridgeMaker {
 
     private void addStepKeywordToBridge(List<String> bridge) {
         int bridgeNumber = bridgeNumberGenerator.generate();
-        String step = convertToStep(bridgeNumber);
+        String step = Step.convert(bridgeNumber);
         BridgeValidator.validateStep(step);
         bridge.add(step);
-    }
-
-    private static String convertToStep(int bridgeNumber) {
-        if (bridgeNumber == 1) {
-            return Step.UP.getValue();
-        }
-        if (bridgeNumber == 0) {
-            return Step.DOWN.getValue();
-        }
-        return null;
     }
 }
