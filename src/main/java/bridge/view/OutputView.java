@@ -11,10 +11,20 @@ import bridge.view.validator.ArgumentValidator;
  */
 public class OutputView {
 
+    private MovingMap movingMap = new MovingMap();
+
+    public void resetMovingMap() {
+        movingMap = new MovingMap();
+    }
+
+    public void updateMovingMap(boolean hasFailed, String moving) {
+        movingMap.addOneRound(hasFailed, moving);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
-    public void printMap(MovingMap movingMap) {
+    public void printMap() {
         ConsolePrinter.printLine(movingMap + "\n");
     }
 

@@ -1,8 +1,12 @@
 package bridge.view.template;
 
-import bridge.view.constants.MovingKeyword;
+import static bridge.view.constants.MovingKeyword.DOWN;
+import static bridge.view.constants.MovingKeyword.UP;
+import static bridge.view.constants.MovingMapFormat.DELIMITER;
+import static bridge.view.constants.MovingMapFormat.PREFIX;
+import static bridge.view.constants.MovingMapFormat.SUFFIX;
+
 import bridge.view.constants.MovingMapDisplay;
-import bridge.view.constants.MovingMapFormat;
 
 import java.util.StringJoiner;
 
@@ -11,19 +15,18 @@ import java.util.StringJoiner;
  */
 public class MovingMap {
 
-    private final StringJoiner up = new StringJoiner(MovingMapFormat.DELIMITER.getValue());
-    private final StringJoiner down = new StringJoiner(MovingMapFormat.DELIMITER.getValue());
+    private final StringJoiner up = new StringJoiner(DELIMITER.getValue(), PREFIX.getValue(), SUFFIX.getValue());
+    private final StringJoiner down = new StringJoiner(DELIMITER.getValue(), PREFIX.getValue(), SUFFIX.getValue());
 
     public void addOneRound(boolean hasFailed, String moving) {
-        String upDisplay = MovingMapDisplay.convert(hasFailed, MovingKeyword.UP.isSameStepMoving(moving));
-        String downDisplay = MovingMapDisplay.convert(hasFailed, MovingKeyword.DOWN.isSameStepMoving(moving));
+        String upDisplay = MovingMapDisplay.convert(hasFailed, UP.isSameStepMoving(moving));
+        String downDisplay = MovingMapDisplay.convert(hasFailed, DOWN.isSameStepMoving(moving));
         up.add(upDisplay);
         down.add(downDisplay);
     }
 
     @Override
     public String toString() {
-        return MovingMapFormat.PREFIX.getValue() + up + MovingMapFormat.SUFFIX.getValue() + "\n"
-            + MovingMapFormat.PREFIX.getValue() + down + MovingMapFormat.SUFFIX.getValue();
+        return up + "\n" + down;
     }
 }
