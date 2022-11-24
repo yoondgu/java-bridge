@@ -25,7 +25,7 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용한다.
      */
     public void move(String moving) throws IllegalStateException {
-        player.addOneMoving(moving);
+        player.updateStatus(moving);
     }
 
     /**
@@ -47,11 +47,11 @@ public class BridgeGame {
         }
     }
 
-    public boolean hasAllMovingDone() {
+    public boolean hasGameDone() {
         return player.hasAllMovingDone();
     }
 
-    public boolean hasPlayerFailed() {
+    public boolean hasGameFailed() {
         return player.isFailed();
     }
 

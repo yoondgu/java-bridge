@@ -15,11 +15,11 @@ class PlayerTest {
     @Test
     void addOneStep() {
         Player player = new Player(steps);
-        player.addOneMoving("U");
+        player.updateStatus("U");
 
         assertThat(player.isFailed()).isFalse();
 
-        player.addOneMoving("U");
+        player.updateStatus("U");
 
         assertThat(player.isFailed()).isTrue();
     }
@@ -28,10 +28,10 @@ class PlayerTest {
     @Test
     void addOneStepForFailedPlayer() {
         Player player = new Player(steps);
-        player.addOneMoving("U");
-        player.addOneMoving("U");
+        player.updateStatus("U");
+        player.updateStatus("U");
 
-        assertThatThrownBy(() -> player.addOneMoving("U"))
+        assertThatThrownBy(() -> player.updateStatus("U"))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -39,11 +39,11 @@ class PlayerTest {
     @Test
     void addOneStepForDonePlayer() {
         Player player = new Player(steps);
-        player.addOneMoving("U");
-        player.addOneMoving("D");
-        player.addOneMoving("U");
+        player.updateStatus("U");
+        player.updateStatus("D");
+        player.updateStatus("U");
 
-        assertThatThrownBy(() -> player.addOneMoving("U"))
+        assertThatThrownBy(() -> player.updateStatus("U"))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

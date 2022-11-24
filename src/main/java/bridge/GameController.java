@@ -47,11 +47,11 @@ public class GameController {
      */
     private void playRoundsUntilFailOrDone() {
         playOneRound();
-        if (bridgeGame.hasPlayerFailed()) {
+        if (bridgeGame.hasGameFailed()) {
             retryOrQuit();
             return;
         }
-        if (!bridgeGame.hasAllMovingDone()) {
+        if (!bridgeGame.hasGameDone()) {
             playRoundsUntilFailOrDone();
         }
     }
@@ -63,7 +63,7 @@ public class GameController {
         outputView.printMessage(OutputMessage.ASK_MOVING);
         String moving = askUntilGetLegalAnswer(inputView::readMoving);
         bridgeGame.move(moving);
-        outputView.updateMovingMap(bridgeGame.hasPlayerFailed(), moving);
+        outputView.updateMovingMap(bridgeGame.hasGameFailed(), moving);
         outputView.printMap();
     }
 
@@ -86,7 +86,7 @@ public class GameController {
     private void showResult() {
         outputView.printMessage(OutputMessage.SHOW_RESULT);
         outputView.printMap();
-        outputView.printResult(bridgeGame.hasPlayerFailed(), bridgeGame.getTrialCount());
+        outputView.printResult(bridgeGame.hasGameFailed(), bridgeGame.getTrialCount());
     }
 
     /**

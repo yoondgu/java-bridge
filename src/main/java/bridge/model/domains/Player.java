@@ -12,15 +12,12 @@ public class Player {
         this.remainingSteps = steps;
     }
 
-    public void addOneMoving(String moving) throws IllegalStateException {
+    public void updateStatus(String moving) throws IllegalStateException {
         validateStatus();
         isFailed = !remainingSteps.isMovableStep(moving);
     }
 
     private void validateStatus() {
-        if (remainingSteps.isEmpty()) {
-            throw new IllegalStateException("사용자가 이미 다리를 모두 건넜습니다.");
-        }
         if (isFailed) {
             throw new IllegalStateException("이미 다리 건너기를 실패했습니다.");
         }
