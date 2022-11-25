@@ -1,5 +1,8 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.domains.constants.BridgeSize;
 import bridge.view.InputView;
@@ -12,7 +15,7 @@ import java.util.function.Supplier;
 /**
  * 사용자 입출력 및 게임 결과의 상호작용을 흐름에 따라 실행하고 관리하는 클래스
  */
-public class GameController {
+public class BridgeGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -94,11 +97,12 @@ public class GameController {
      * 잘못된 입력값으로 인한 예외 발생 시 다시 입력값을 받는다.
      */
     private <T> T askUntilGetLegalAnswer(Supplier<T> readInput) {
-        try {
-            return readInput.get();
-        } catch (IllegalArgumentException exception) {
-            outputView.printUserInputErrorMessage(exception.getMessage());
-            return askUntilGetLegalAnswer(readInput);
+        while (true) {
+            try {
+                return readInput.get();
+            } catch (IllegalArgumentException exception) {
+                outputView.printUserInputErrorMessage(exception.getMessage());
+            }
         }
     }
 
@@ -108,11 +112,12 @@ public class GameController {
      */
     private <R> R askUntilGetLegalAnswer(BiFunction<Integer, Integer, R> readInput,
                                          int minimum, int maximum) {
-        try {
-            return readInput.apply(minimum, maximum);
-        } catch (IllegalArgumentException exception) {
-            outputView.printUserInputErrorMessage(exception.getMessage());
-            return askUntilGetLegalAnswer(readInput, minimum, maximum);
+        while (true) {
+            try {
+                return readInput.apply(minimum, maximum);
+            } catch (IllegalArgumentException exception) {
+                outputView.printUserInputErrorMessage(exception.getMessage());
+            }
         }
     }
 }
