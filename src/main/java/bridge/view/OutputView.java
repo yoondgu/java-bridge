@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.controller.constants.GameStatus;
 import bridge.view.constants.OutputFormat;
 import bridge.view.constants.OutputMessage;
 import bridge.view.constants.ResultKeyword;
@@ -31,8 +32,8 @@ public class OutputView {
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      */
-    public void printResult(boolean hasFailed, int trialCount) {
-        ConsolePrinter.printFormattedLine(OutputFormat.RESULT_HAS_SUCCEED, ResultKeyword.convertValueByKey(!hasFailed));
+    public void printResult(GameStatus gameStatus, int trialCount) {
+        ConsolePrinter.printFormattedLine(OutputFormat.RESULT_HAS_SUCCEED, ResultKeyword.convertValueByGameStatus(gameStatus));
         ConsolePrinter.printFormattedLine(OutputFormat.RESULT_TRIAL_COUNT, trialCount);
     }
 

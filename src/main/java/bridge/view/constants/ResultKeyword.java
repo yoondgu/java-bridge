@@ -1,17 +1,19 @@
 package bridge.view.constants;
 
+import bridge.controller.constants.GameStatus;
+
 /**
  * 최종 결과를 표현하는 키워드를 저장하고 값에 따라 변환해주는 상수 클래스
  */
 public enum ResultKeyword implements Keyword {
 
-    SUCCESS("성공", true),
-    FAIL("실패", false);
+    SUCCESS("성공", GameStatus.SUCCEED),
+    FAIL("실패", GameStatus.FAILED);
 
     private final String key;
-    private final boolean value;
+    private final GameStatus value;
 
-    ResultKeyword(String key, boolean value) {
+    ResultKeyword(String key, GameStatus value) {
         this.key = key;
         this.value = value;
     }
@@ -23,14 +25,17 @@ public enum ResultKeyword implements Keyword {
 
     @SuppressWarnings("unchecked")
     @Override
-    public Boolean getValue() {
+    public GameStatus getValue() {
         return value;
     }
 
-    public static String convertValueByKey(boolean hasSucceed) {
-        if (hasSucceed) {
+    public static String convertValueByGameStatus(GameStatus gameStatus) {
+        if (gameStatus == GameStatus.SUCCEED) {
             return SUCCESS.getKey();
         }
-        return FAIL.getKey();
+        if (gameStatus == GameStatus.FAILED) {
+            return FAIL.getKey();
+        }
+        return null;
     }
 }
